@@ -16,13 +16,14 @@ express()
 	 {
 		case 'stamp':
 			if (weight < 2)
-				price = .5;
+				price = String(.50);
 			else if (weight >= 2 && weight < 3)
 				price = .71;
 			else if (weight >= 3 && weight < 3.5)
 				price = .92;
 			else
 				price = 1.13;
+			postage = 'Stamped Letter';
 			break;
 		case 'meter':
 			if (weight < 2)
@@ -32,11 +33,12 @@ express()
 			else if (weight >= 3 && weight < 3.5)
 				price = .89;
 			else
-				price = 1.10;
+				price = String(1.10);
+			postage = 'Metered Letter';
 			break;
 		case 'flat':
 			if (weight < 2)
-				price = 1;
+				price = String(1.00);
 			else if (weight >= 2 && weight < 3)
 				price = 1.21;
 			else if (weight >= 3 && weight < 4)
@@ -56,19 +58,20 @@ express()
 			else if (weight >= 10 && weight < 11)
 				price = 2.89;
 			else if (weight >= 11 && weight < 12)
-				price = 3.10;
+				price = String(3.10);
 			else if (weight >= 12 && weight < 13)
 				price = 3.31;
 			else 
 				price = 3.52;
+			postage = 'Large Envelope';
 			break;
 		case 'retail':
 			if (weight < 5)
-				price = 3.5;
+				price = String(3.50);
 			else if (weight >= 5 && weight < 9)
 				price = 3.75;
 			else if (weight >= 9 && weight < 10)
-				price = 4.10;
+				price = String(4.10);
 			else if (weight >= 10 && weight < 11)
 				price = 4.45;
 			else if (weight >= 11 && weight < 12)
@@ -76,7 +79,8 @@ express()
 			else if (weight >= 12 && weight < 13)
 				price = 5.15;
 			else 
-				price = 5.50;
+				price = String(5.50);
+			postage = 'First-Class Package Service'
 			break;
 	 }
 	 res.render("results", {price: String(price), postage: String(postage), weight: String(weight)});
