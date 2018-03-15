@@ -4,21 +4,6 @@ const PORT = process.env.PORT || 5000
 var pg = require('pg');
 var app = express();
 
-const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: true,
-});
-
-client.connect();
-/*
-client.query('SELECT * FROM person;', (err, res) => {
-  if (err) throw err;
-  for (let row of res.rows) {
-    console.log(JSON.stringify(row));
-  }
-  client.end();
-});
-
 app.get('/db', function (request, response) {
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
     client.query('SELECT * FROM test_table', function(err, result) {
@@ -30,7 +15,7 @@ app.get('/db', function (request, response) {
     });
   });
 });
-*/
+
 express()
   .use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
@@ -39,7 +24,7 @@ express()
 	  res.render("testing");
   })
   .get('/getPerson', (req, res) => {
-	  client.connect()
+	  pg.connect(process.env.DATABASE_URL, function (err, client, done){
 	  client.query('SELECT * FROM person', (err, resp) => {
 		  done();
 		  if (err)
@@ -48,6 +33,7 @@ express()
 			res.send("database");
 		  })
 		})
+	})
   .get('/post', (req, res) => {
 	 var weight = Number(req.query.weight);
 	 var postage = req.query.postage;
