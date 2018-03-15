@@ -10,7 +10,7 @@ const client = new Client({
 });
 
 client.connect();
-
+/*
 client.query('SELECT * FROM person;', (err, res) => {
   if (err) throw err;
   for (let row of res.rows) {
@@ -30,7 +30,7 @@ app.get('/db', function (request, response) {
     });
   });
 });
-
+*/
 express()
   .use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
