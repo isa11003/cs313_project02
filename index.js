@@ -4,6 +4,15 @@ const PORT = process.env.PORT || 5000
 var pg = require('pg');
 var app = express();
 
+const { Pool } = require('pg')
+const pool = new Pool({
+	user: 'rentaluser',
+	host: 'localhost',
+	database: 'rentals',
+	password: 'IsaacsonR',
+	port: 5432,
+})
+
 app.get('/db', function (request, response) {
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
     client.query('SELECT * FROM test_table', function(err, result) {
@@ -34,6 +43,9 @@ express()
 		  })
 		})
 	})
+   .get('/about-us', (req,res) =>{
+	   res.render('aboutUs');
+   })
   .get('/post', (req, res) => {
 	 var weight = Number(req.query.weight);
 	 var postage = req.query.postage;
