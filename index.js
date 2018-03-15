@@ -39,7 +39,7 @@ express()
 	  res.render("testing");
   })
   .get('/getPerson', (req, res) => {
-	  pg.connect(process.env.DATABASE_URL, function (err, client, done){
+	  client.connect()
 	  client.query('SELECT * FROM person', (err, resp) => {
 		  done();
 		  if (err)
@@ -48,7 +48,6 @@ express()
 			res.send("database");
 		  })
 		})
-	})
   .get('/post', (req, res) => {
 	 var weight = Number(req.query.weight);
 	 var postage = req.query.postage;
