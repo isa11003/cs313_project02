@@ -27,7 +27,10 @@ express()
 	  pg.connect(process.env.DATABASE_URL, function (err, client, done){
 	  client.query('SELECT * FROM person', (err, resp) => {
 		  done();
-		  res.send("database");
+		  if (err)
+			res.send("Danger Danger");
+		  else
+			res.send("database");
 		  })
 		})
 	})
