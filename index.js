@@ -2,12 +2,9 @@ const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
 var pg = require('pg');
+var app = express();
 
-express()
-  .use(express.static(path.join(__dirname, 'public')))
-  .set('views', path.join(__dirname, 'views'))
-  .set('view engine', 'ejs')
-  .get('/db', function (request, response) {
+app.get('/db', function (request, response) {
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
     client.query('SELECT * FROM person', function(err, result) {
       done();
@@ -19,6 +16,10 @@ express()
   });
 });
 
+express()
+  .use(express.static(path.join(__dirname, 'public')))
+  .set('views', path.join(__dirname, 'views'))
+  .set('view engine', 'ejs')
   .get('/test', (req, res) => {
 	  res.render("testing");
   })
