@@ -1,7 +1,7 @@
 const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
-var pg = require('pg');
+/*var pg = require('pg');
 
 app.get('/db', function (request, response) {
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
@@ -13,20 +13,11 @@ app.get('/db', function (request, response) {
        { response.render('pages/db', {results: result.rows} ); }
     });
   });
-});
+}); */
 
 express()
   .use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
-  .get('/test', (req, res) => {
-	  res.render("testing");
-  })
-  .get('/getPerson', (req, res) => {
-	  client.query('SELECT * FROM person', (err, resp) => {
-		  done();
-		  res.render("database");
-		  })
-  })
   .get('/', (req, res) => res.render('pages/index'))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
