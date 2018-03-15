@@ -20,9 +20,9 @@ express()
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/getPerson', (req, res) => {
-	  pool.query('SELECT * FROM person', (err, resp) => {
-		  console.log(err, resp)
-		  pool.end()
+	  client.query('SELECT * FROM person', (err, resp) => {
+		  done();
+		  res.render("database");
 		  })
   })
   .get('/', (req, res) => res.render('pages/index'))
