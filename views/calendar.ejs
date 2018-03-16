@@ -8,8 +8,14 @@
 
 	<% include partials/header.ejs %>
 	<div>
-		<p> calendar </p>
+		<p> This will be a better calendar </p>
 	</div>
 
+	<ul>
+    <% results.forEach(function(r) { %>
+        <li><%= r.name %> : <%= r.date %> - <%= r.item %></li>
+    <% }); %>
+</ul>
+	
 </body>
 </html>
