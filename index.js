@@ -1,11 +1,18 @@
 const express = require('express')
 const path = require('path')
-const PORT = process.env.PORT || 5000
+//const PORT = process.env.PORT || 5000
 var pg = require('pg');
 var app = express();
 
-//var sequelize = new Sequelize("postgres://username:password@localhost:5432/jobletics");
+if(process.env.DATABASE_URL){
+	var url = "postgres://wtzhtfgoffnsxy:906fb59ea78505391a4ad64e3785d0f5ee41a95a12223c0289f2077a092b3112@ec2-54-243-129-189.compute-1.amazonaws.com:5432/dmhjfhq7qqrce";
+	pool = new Pool({
+		connectionString: url;
+	});
+}
 
+//var sequelize = new Sequelize("postgres://username:password@localhost:5432/jobletics");
+/*
 const { Pool, Client } = require('pg')
 const pool = new Pool({
 	user: 'rentaluser',
@@ -14,7 +21,7 @@ const pool = new Pool({
 	password: 'IsaacsonR',
 	port: 5432,
 	poolSize: 10	
-})
+}) */
 
 
 
