@@ -46,10 +46,10 @@ express()
 	})
 	
 	
-   .get('/about-us', (req,res) =>{
+   .get('/about-us', (req, res) =>{
 	   res.render('aboutUs');
    })
-   .get('/contact-us', (req,res) =>{
+   .get('/contact-us', (req, res) =>{
 	   res.render('contactUs');
    })
    .get('/calendar', (req, res) =>{
@@ -62,11 +62,11 @@ express()
 		})
 //		pool.end();
    })
-   .get('/contract', (req,res) =>{
+   .get('/contract', (req, res) =>{
 	   res.render('contract');
    })
    .get('/items', (req, res) =>{
-	   pool.query("SELECT * FROM items", function(err, result){
+	   pool.query("SELECT * FROM item", function(err, result){
 
 		if (err)
 			res.send("error in items");
