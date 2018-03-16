@@ -38,11 +38,11 @@ express()
 		pool.query("SELECT * FROM person", function(err, result){
 
 		if (err)
-			res.send("error numero duos");
+			res.send("didn't get person");
 		else
 			res.json(result.rows);
 		})
-//		pool.end();
+		pool.end();
 	})
 	
 	
