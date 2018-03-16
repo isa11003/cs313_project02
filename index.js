@@ -56,7 +56,7 @@ express()
 	   pool.query("SELECT * FROM reservation", function(err, result){
 
 		if (err)
-			res.send("error numero duos");
+			res.send("error in calendar");
 		else
 			res.render("results");
 		})
@@ -69,7 +69,7 @@ express()
 	   pool.query("SELECT * FROM items", function(err, result){
 
 		if (err)
-			res.send("error numero duos");
+			res.send("error in items");
 		else
 			res.render("items");
 		})
