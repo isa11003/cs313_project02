@@ -53,12 +53,18 @@ express()
 	   res.render('contactUs');
    })
    .get('/calendar', (req, res) =>{
-	   pool.query("SELECT * FROM reservation", function(err, result){
-
+	  // pool.query("SELECT day, name, lastname, firstname, itemid, personid, FROM reservation", function(err, result){
+		pool.query("SELECT * FROM reservation", function(err, result){
+	   //SELECT userid, name FROM public.post
+//JOIN public.user ON public.post.userid = public.user.id
+//;
+	   
 		if (err)
 			res.send("error in calendar");
 		else
+		{
 			res.render('calendar', {results: result.rows});
+		}
 		})
 //		pool.end();
    })

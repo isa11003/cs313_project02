@@ -13,7 +13,7 @@
 
 	<ul>
     <% results.forEach(function(r) { %>
-        <li><%= r.name %> : <%= r.date %> - <%= r.item %></li>
+        <li><%= r.person.firstname %> : <%= r.day %> - <%= r.item.name %></li>
     <% }); %>
 </ul>
 	
