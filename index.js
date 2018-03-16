@@ -36,16 +36,7 @@ express()
   })
   .get('/getPerson', (req, res) => {
 		pool.query("SELECT * FROM person", function(err, result){
-	/*	if (err){
-			res.send("error error error");
-			throw err;
-		}
-		
-		client.query("SELECT * FROM person", function(err, result){
-			client.release();
-			if (err){
-				return console.error('Error', err.stack);
-			}*/
+
 		if (err)
 			res.send("error numero duos");
 		else
@@ -62,13 +53,27 @@ express()
 	   res.render('contactUs');
    })
    .get('/calendar', (req,res) =>{
-	   res.render('calendar');
+	   pool.query("SELECT * FROM reservation", function(err, result){
+
+		if (err)
+			res.send("error numero duos");
+		else
+			res.json(result.rows);
+		})
+		pool.end();
    })
    .get('/contract', (req,res) =>{
 	   res.render('contract');
    })
    .get('/items', (req,res) =>{
-	   res.render('items');
+	   pool.query("SELECT * FROM items", function(err, result){
+
+		if (err)
+			res.send("error numero duos");
+		else
+			res.json(result.rows);
+		})
+		pool.end();
    })
   .get('/post', (req, res) => {
 	 var weight = Number(req.query.weight);
