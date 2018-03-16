@@ -8,7 +8,11 @@
 
 	<% include partials/header.ejs %>
 	<div>
-		<p> items </p>
+		<ul>
+    <% results.forEach(function(r) { %>
+        <li><%= r.name %> - <%= r.description %></li>
+    <% }); %>
+</ul>
 	</div>
 
 </body>

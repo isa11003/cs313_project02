@@ -71,7 +71,7 @@ express()
 		if (err)
 			res.send("error in items");
 		else
-			res.json(result.rows);
+			res.render('items', result.rows);
 		})
 //		pool.end();
    })
