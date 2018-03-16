@@ -47,7 +47,6 @@ express()
 				return console.error('Error', err.stack);
 			}
 		res.json(reslut.rows); */
-		release();
 		if (err)
 			res.send("error numero duos");
 		else
