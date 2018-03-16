@@ -35,8 +35,7 @@ express()
 	  res.send("testing");
   })
   .get('/getPerson', (req, res) => {
-	pg.connect(process.env.DATABASE_URL,function (err,client, release){
-		client.query("SELECT * FROM person", function(err, result){
+		pool.query("SELECT * FROM person", function(err, result){
 	/*	if (err){
 			res.send("error error error");
 			throw err;
@@ -54,9 +53,10 @@ express()
 		else
 			res.send("working!!!!");
 		})
+		pool.end();
 	})
-	//pool.end();
-  })
+	
+	
    .get('/about-us', (req,res) =>{
 	   res.render('aboutUs');
    })
