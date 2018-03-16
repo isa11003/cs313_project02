@@ -4,47 +4,64 @@ const PORT = process.env.PORT || 5000
 var pg = require('pg');
 var app = express();
 
-const { Pool } = require('pg')
+var sequelize = new Sequelize("postgres://username:password@localhost:5432/jobletics");
+
+const { Pool, Client } = require('pg')
 const pool = new Pool({
 	user: 'rentaluser',
 	host: 'localhost',
 	database: 'rentals',
 	password: 'IsaacsonR',
 	port: 5432,
+	poolSize: 10	
 })
 
-app.get('/db', function (request, response) {
-  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-    client.query('SELECT * FROM test_table', function(err, result) {
-      done();
-      if (err)
-       { console.error(err); response.send("Error " + err); }
-      else
-       { response.render('pages/db', {results: result.rows} ); }
-    });
-  });
-});
+
 
 express()
   .use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/test', (req, res) => {
-	  res.render("testing");
+	  res.send("testing");
   })
   .get('/getPerson', (req, res) => {
-	  pg.connect(process.env.DATABASE_URL, function (err, client, done){
-	  client.query('SELECT * FROM person', (err, resp) => {
-		  done();
-		  if (err)
-			res.send("Danger Danger");
-		  else
-			res.send("database");
-		  })
+	pg.connect(process.env.DATABASE_URL,function (err,client, release){
+		client.query("SELECT * FROM person", function(err, result){
+	/*	if (err){
+			res.send("error error error");
+			throw err;
+		}
+		
+		client.query("SELECT * FROM person", function(err, result){
+			client.release();
+			if (err){
+				return console.error('Error', err.stack);
+			}
+		res.json(reslut.rows); */
+		release();
+		if (err)
+			res.send("error numero duos");
+		else
+			res.send("working!!!!");
 		})
 	})
+	//pool.end();
+  })
    .get('/about-us', (req,res) =>{
 	   res.render('aboutUs');
+   })
+   .get('/contact-us', (req,res) =>{
+	   res.render('contactUs');
+   })
+   .get('/calendar', (req,res) =>{
+	   res.render('calendar');
+   })
+   .get('/contract', (req,res) =>{
+	   res.render('contract');
+   })
+   .get('/items', (req,res) =>{
+	   res.render('items');
    })
   .get('/post', (req, res) => {
 	 var weight = Number(req.query.weight);
