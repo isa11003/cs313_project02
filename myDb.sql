@@ -36,3 +36,14 @@ GRANT ALL ON ALL TABLES IN SCHEMA public TO rentaluser;
 
 INSERT INTO person (firstname, lastname, email, phone) VALUES
 ('Taylor', 'Isaacson', 'taylorhisaacson@gmail.com', 2083698723);
+
+INSERT INTO item (name, description) VALUES
+('Chair', 'metal folding chair'),
+('Table', '6 foot round table with folding legs'),
+('Table Cloth', 'round white table cloth to cover a 6 foot table');
+
+INSERT INTO reserveditem (personid, itemid) VALUES
+(1,3);
+
+INSERT INTO reservation(reserveditemid, day) VALUES
+(1, '2018-03-31');

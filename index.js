@@ -42,7 +42,7 @@ express()
 		else
 			res.json(result.rows);
 		})
-		pool.end();
+//		pool.end();
 	})
 	
 	
@@ -60,7 +60,7 @@ express()
 		else
 			res.render("results");
 		})
-		pool.end();
+//		pool.end();
    })
    .get('/contract', (req,res) =>{
 	   res.render('contract');
@@ -73,7 +73,7 @@ express()
 		else
 			res.render("items");
 		})
-		pool.end();
+//		pool.end();
    })
   .get('/post', (req, res) => {
 	 var weight = Number(req.query.weight);
