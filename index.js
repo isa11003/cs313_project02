@@ -59,8 +59,7 @@ express()
 			res.send("error in calendar");
 		else
 		{
-			res.json(result.rows);
-//			res.render('calendar', {results: result.rows});
+			res.render('calendar', {results: result.rows});
 		}
 		})
 //		pool.end();
