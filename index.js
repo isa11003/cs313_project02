@@ -1,8 +1,10 @@
 const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
+const { Pool, Client } = require('pg')
 var pg = require('pg');
 var app = express();
+var pool = null;
 
 if(process.env.DATABASE_URL){
 	var url = "postgres://wtzhtfgoffnsxy:906fb59ea78505391a4ad64e3785d0f5ee41a95a12223c0289f2077a092b3112@ec2-54-243-129-189.compute-1.amazonaws.com:5432/dmhjfhq7qqrce";
@@ -12,10 +14,8 @@ if(process.env.DATABASE_URL){
 }
 else{
 
-//var sequelize = new Sequelize("postgres://username:password@localhost:5432/jobletics");
 
-const { Pool, Client } = require('pg')
-const pool = new Pool({
+    pool = new Pool({
 	user: 'rentaluser',
 	host: 'localhost',
 	database: 'rentals',
