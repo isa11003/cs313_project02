@@ -45,12 +45,11 @@ express()
 			client.release();
 			if (err){
 				return console.error('Error', err.stack);
-			}
-		res.json(reslut.rows); */
+			}*/
 		if (err)
 			res.send("error numero duos");
 		else
-			res.send("working!!!!");
+			res.json(result.rows);
 		})
 		pool.end();
 	})
