@@ -65,7 +65,7 @@ express()
    .get('/contract', (req,res) =>{
 	   res.render('contract');
    })
-   .get('/items', (req,res) =>{
+   .get('/items', (req, res) =>{
 	   pool.query("SELECT * FROM items", function(err, result){
 
 		if (err)
