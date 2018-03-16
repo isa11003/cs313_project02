@@ -42,7 +42,7 @@ express()
 		else
 			res.json(result.rows);
 		})
-		pool.end();
+//	pool.end();
 	})
 	
 	
