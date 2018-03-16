@@ -58,8 +58,7 @@ express()
 		if (err)
 			res.send("error numero duos");
 		else
-			res.json(result.rows);
-			res.render("results", {results.rows});
+			res.render("results");
 		})
 		pool.end();
    })
@@ -72,7 +71,7 @@ express()
 		if (err)
 			res.send("error numero duos");
 		else
-			res.json(result.rows);
+			res.render("items");
 		})
 		pool.end();
    })
