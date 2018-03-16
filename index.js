@@ -53,10 +53,7 @@ express()
 	   res.render('contactUs');
    })
    .get('/calendar', (req, res) =>{
-	   pool.query("SELECT day, name, lastname, firstname, itemid, personid, reserveditemid, itemid FROM reservation
-		JOIN reserveditem ON reservation.reserveditemid = reserveditem.id
-		JOIN item ON reserveditem.itemid = item.id
-		JOIN person ON reserveditem.personid = person.id", function(err, result){
+	   pool.query("SELECT day, name, lastname, firstname, itemid, personid, reserveditemid, itemid FROM reservation JOIN reserveditem ON reservation.reserveditemid = reserveditem.id JOIN item ON reserveditem.itemid = item.id JOIN person ON reserveditem.personid = person.id", function(err, result){
 		  
 		if (err)
 			res.send("error in calendar");
