@@ -59,6 +59,7 @@ express()
 			res.send("error numero duos");
 		else
 			res.json(result.rows);
+			res.render("results", {results.rows});
 		})
 		pool.end();
    })
