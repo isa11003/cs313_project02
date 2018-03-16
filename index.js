@@ -4,7 +4,7 @@ const PORT = process.env.PORT || 5000
 var pg = require('pg');
 var app = express();
 
-var sequelize = new Sequelize("postgres://username:password@localhost:5432/jobletics");
+//var sequelize = new Sequelize("postgres://username:password@localhost:5432/jobletics");
 
 const { Pool, Client } = require('pg')
 const pool = new Pool({
