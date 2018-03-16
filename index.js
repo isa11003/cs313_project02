@@ -52,13 +52,13 @@ express()
    .get('/contact-us', (req,res) =>{
 	   res.render('contactUs');
    })
-   .get('/calendar', (req,res) =>{
+   .get('/calendar', (req, res) =>{
 	   pool.query("SELECT * FROM reservation", function(err, result){
 
 		if (err)
 			res.send("error in calendar");
 		else
-			res.render("results");
+			res.json(result.rows);
 		})
 //		pool.end();
    })
@@ -71,7 +71,7 @@ express()
 		if (err)
 			res.send("error in items");
 		else
-			res.render("items");
+			res.json(result.rows);
 		})
 //		pool.end();
    })
