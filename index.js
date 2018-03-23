@@ -66,7 +66,7 @@ express()
 			from: req.query.email,
 			to: 'taylorhisaacson@gmail.com',
 			subject: 'FROM: ' + req.query.name,
-			text: req.query.message
+			text: req.query.message + '\n\n reply to:' + req.query.email
 		};
 
 		transporter.sendMail(mailOptions, function(error, info){
