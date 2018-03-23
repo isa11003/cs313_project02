@@ -63,10 +63,10 @@ express()
 		});
 
 		var mailOptions = {
-			from: req.email,
+			from: req.query.email,
 			to: 'taylorhisaacson@gmail.com',
-			subject: 'FROM: ' + req.name,
-			text: req.message
+			subject: 'FROM: ' + req.query.name,
+			text: req.query.message
 		};
 
 		transporter.sendMail(mailOptions, function(error, info){
