@@ -47,3 +47,14 @@ INSERT INTO reserveditem (personid, itemid) VALUES
 
 INSERT INTO reservation(reserveditemid, day) VALUES
 (1, '2018-03-31');
+
+update item SET description = '5 foot round table with folding legs' WHERE id = 2;
+
+update item SET description = 'round white table cloth to cover a 5 foot table' WHERE id = 3;
+
+CREATE TABLE admin
+(
+	id SERIAL NOT NULL PRIMARY KEY,
+	name VARCHAR(100) NOT NULL UNIQUE,
+	password VARCHAR(100) NOT NULL
+);
