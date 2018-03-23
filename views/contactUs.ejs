@@ -7,12 +7,15 @@
 <body>
 
 	<% include partials/header.ejs %>
-	<div style="text-align: center;">
+	<form action="email" method="post" target="_SELF" style="text-align: center;">
 		<input placeholder="name" type="text"> <br />
 		<input placeholder="email" type="text"> <br />
 		<textarea placeholder="message" cols="50" rows="4"></textarea> <br />
 		<input type="submit">
-	</div>
+	</form>
 
+	<% include partials/footer %>
+	
+	
 </body>
 </html>

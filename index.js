@@ -4,7 +4,9 @@ const PORT = process.env.PORT || 5000
 const { Pool, Client } = require('pg')
 var pg = require('pg');
 var app = express();
+var nodemailer = require('nodemailer');
 var pool = null;
+
 
 if(process.env.DATABASE_URL){
 	var url = "postgres://wtzhtfgoffnsxy:906fb59ea78505391a4ad64e3785d0f5ee41a95a12223c0289f2077a092b3112@ec2-54-243-129-189.compute-1.amazonaws.com:5432/dmhjfhq7qqrce";
@@ -45,7 +47,37 @@ express()
 //	pool.end();
 	})
 	
-	
+	.get('/home', (req, res) =>{
+	   res.render('home');
+   })
+   .get('/email', (req, res) =>{
+	   var transporter = nodemailer.createTransport({
+			service: 'gmail',
+			auth: {
+			user: 'taylorhisaacson@gmail.com',
+			pass: 'CyCl0psEAtCl0wns+'
+			}
+		});
+
+		var mailOptions = {
+			from: 'youremail@gmail.com',
+			to: 'taylorhisaacson@gmail.com',
+			subject: 'Sending Email using Node.js',
+			text: 'That was easy!'
+		};
+
+		transporter.sendMail(mailOptions, function(error, info){
+			if (error) {
+			console.log(error);
+			} else {
+			console.log('Email sent: ' + info.response);
+			}
+		});
+	   res.render('home');
+   })
+   .get('/admin', (req, res) =>{
+	   res.render('admin');
+   })
    .get('/about-us', (req, res) =>{
 	   res.render('aboutUs');
    })
