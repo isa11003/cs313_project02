@@ -51,6 +51,9 @@ express()
 	   res.render('home');
    })
    .get('/email', (req, res) =>{
+	   
+	   
+	   
 	   var transporter = nodemailer.createTransport({
 			service: 'gmail',
 			auth: {
@@ -60,10 +63,10 @@ express()
 		});
 
 		var mailOptions = {
-			from: 'taylorhisaacson@gmail.com',
+			from: req.email,
 			to: 'taylorhisaacson@gmail.com',
-			subject: 'Sending Email using Node.js',
-			text: 'That was easy!'
+			subject: 'FROM: ' + req.name,
+			text: req.message
 		};
 
 		transporter.sendMail(mailOptions, function(error, info){
