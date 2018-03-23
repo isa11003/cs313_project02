@@ -52,6 +52,14 @@ update item SET description = '5 foot round table with folding legs' WHERE id = 
 
 update item SET description = 'round white table cloth to cover a 5 foot table' WHERE id = 3;
 
+ALTER TABLE item ADD COLUMN quantity INT NOT NULL DEFAULT 1;
+
+
+update item SET quantity = 64 WHERE id = 1;
+update item SET quantity = 8 WHERE id = 2;
+update item SET quantity = 8 WHERE id = 3;
+
+
 CREATE TABLE admin
 (
 	id SERIAL NOT NULL PRIMARY KEY,
