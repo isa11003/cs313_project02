@@ -60,7 +60,7 @@ express()
 		});
 
 		var mailOptions = {
-			from: 'youremail@gmail.com',
+			from: 'taylorhisaacson@gmail.com',
 			to: 'taylorhisaacson@gmail.com',
 			subject: 'Sending Email using Node.js',
 			text: 'That was easy!'
