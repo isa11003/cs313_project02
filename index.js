@@ -134,7 +134,7 @@ express()
 						console.log("failed to find item");
 					}
 					else{
-						itemId = result.rows[0];
+						itemId = result.rows[0].id;
 						console.log(itemId);
 								
 						var reservedItemQuery = "INSERT INTO reserveditem (personid, itemid) VALUES (" + personId + ", " + itemId + ")" ;
