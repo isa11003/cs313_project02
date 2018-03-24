@@ -134,7 +134,7 @@ express()
 						console.log("failed to find item");
 					}
 					else{
-						var json = JSON.parse(results.rows);
+						var json = JSON.parse(result.rows);
 						itemId = json.id;
 						console.log("Item id: " + itemId);
 								
