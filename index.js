@@ -118,9 +118,7 @@ express()
 		pool.query(personQuery, function(err, result){
 			if (err)
 				console.log("query failed");
-			else{
-				personId = result.rows[0].id;
-			
+			else{			
 				pool.query(findPersonQuery, function(err, result){
 					if (err)
 						console.log("failed to retrieve new person")
