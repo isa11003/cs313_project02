@@ -124,7 +124,7 @@ express()
 					if (err)
 						console.log("failed to retrieve new person");
 					else{
-						personId = result.rows[0].id;
+						personId = result.rows.id;
 						console.log("person id received: " + personId);
 					}
 				});
@@ -134,7 +134,7 @@ express()
 						console.log("failed to find item");
 					}
 					else{
-						itemId = result.rows[0].id;
+						itemId = result.rows.id;
 						console.log(itemId);
 								
 						var reservedItemQuery = "INSERT INTO reserveditem (personid, itemid) VALUES (" + personId + ", " + itemId + ")" ;
@@ -143,7 +143,16 @@ express()
 							if (err)
 								console.log("failed to reserve item");
 							else{
-								reservedItemId = results.rows[0].id;
+								var itemIdQuery = "SELECT ID FROM reserveditem WHERE personid = '" + personId + "' AND itemid = '" +itemId + "'";
+								
+								pool.query(itemIdQuery, function(err, result){
+									if (err)
+										console.log("error checking item id");
+									else{
+										reservedItemId = results.rows.id;
+										console.log("reserved it id: " + reservedItemId);
+									}
+								});
 											
 								var reservationQuery = "INSERT INTO reservation(reserveditemid, day) VALUES (" + reservedItemId + ", " + date + ")";
 			
