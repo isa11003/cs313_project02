@@ -101,9 +101,9 @@ express()
 		var item = req.query.item;
 		var quantity = req.query.amount;
 		var date = req.query.date;
-		var personId;
-		var itemId;
-		var reservedItemId;
+		var personId = 0;
+		var itemId = 0;
+		var reservedItemId = 0;
 		
 		var personQuery = "INSERT INTO person (firstname, lastname, email, phone) VALUES ('" + first + "', '" + last + "', '" + email + "', '" + phone + "')";
 		var itemQuery = "SELECT id FROM item WHERE name = '" + item + "'";
