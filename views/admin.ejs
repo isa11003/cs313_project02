@@ -4,10 +4,29 @@
   <% include partials/head.ejs %>
 </head>
 
-<body>
+<body style="text-align: center;">
 
 	<% include partials/header.ejs %>
-
+		<form action="createItem" method="get">
+			<h2>Create a new item</h2><br />
+			<input type="text" placeholder="name" name="name"><br />
+			<input type="text" placeholder="description" name="description"><br />
+			<input type="text" placeholder="quantity" name="quantity"><br />
+			<input type="submit">
+		</form>
+		<br />
+		<form action="createReservation" method="get">
+			<h2>Create a new reservation</h2>
+			<br />
+			<input type="text" placeholder="Person's first name" name="first"> <br />
+			<input type="text" placeholder="person's last name" name="last"><br />
+			<input type="text" placeholder="person's email" name="email"><br />
+			<input type="text" placeholder="person's phone number" name="phone"><br />
+			<input type="text" placeholder="item" name="item"><br />
+			<input type="text" placeholder="amount" name="amount"><br />
+			<input type="text" placeholder="date 'ex: 1990-03-23'" name="date"><br />
+			<input type="submit">
+		</form>
 	<% include partials/footer %>
 	
 </body>

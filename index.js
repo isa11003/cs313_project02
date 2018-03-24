@@ -66,7 +66,7 @@ express()
 			from: req.query.email,
 			to: 'taylorhisaacson@gmail.com',
 			subject: 'FROM: ' + req.query.name,
-			text: req.query.message + '\n\n reply to:' + req.query.email
+			text: 'FROM: ' + req.query.name + '\n' + req.query.message + '\n\n reply to:  ' + req.query.email
 		};
 
 		transporter.sendMail(mailOptions, function(error, info){
@@ -79,6 +79,68 @@ express()
 	   res.render('home');
    })
    .get('/admin', (req, res) =>{
+	   res.render('admin');
+   })
+   .get('/createItem', (req, res) =>{
+	   var name = req.query.name;
+	   var description = req.query.description;
+	   var quantity = req.query.quantity;
+	   
+	   var query = "INSERT INTO item (name, description, quantity) VALUES ('" + name + "', '" + description + "', '" + quantity + "')";
+	   
+	   pool.query(query);
+	   
+	   res.render('admin');
+   })
+   .get('/createReservation', (req, res) =>{
+	   
+		var first = req.query.first;
+		var last = req.query.last;
+		var email = req.query.email;
+		var phone = req.query.phone;
+		var item = req.query.item;
+		var quantity = req.query.amount;
+		var date = req.query.date;
+		var personId;
+		var itemId;
+		var reservedItemId;
+		
+		var personQuery = "INSERT INTO person (firstname, lastname, email, phone) VALUES ('" + first + "', '" + last + "', '" + email + "', '" + phone + "')";
+		var itemQuery = "SELECT id FROM item WHERE = '" + item + "'";
+		
+		pool.query(personQuery, function(err, result){
+			if (err)
+				alert("query failed");
+			else
+				personId = result.rows[0].id;
+		})
+		
+		
+		pool.query(itemQuery, function(err, result){
+			if (err)
+				alert("failed to find item");
+			else
+				itemId = result.rows[0];
+		})
+		
+		var reservedItemQuery = "INSERT INTO reserveditem (personid, itemid) VALUES (" + personId + ", " + itemId + ")" ;
+		
+		pool.query(reservedItemQuery, function(err, result){
+			if (err)
+				alert("failed to reserve item");
+			else
+				reservedItemId = results.rows[0].id;
+		})
+		
+		var reservationQuery = "INSERT INTO reservation(reserveditemid, day) VALUES (" + reservedItemId + ", " + date + ")";
+		
+		pool.query(reservationQuery, function(err, result){
+			if (err)
+				alert("failed to create reservation");
+			else 
+				alert("success!!!!!!");
+		})
+	   
 	   res.render('admin');
    })
    .get('/about-us', (req, res) =>{
