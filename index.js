@@ -145,11 +145,11 @@ express()
 							else{
 								var itemIdQuery = "SELECT id FROM reserveditem WHERE personid = '" + personId + "' AND itemid = '" + itemId + "'";
 								
-								pool.query(itemIdQuery, function(err, result){
+								pool.query(itemIdQuery, function(err, res){
 									if (err)
 										console.log("error checking item id");
 									else{
-										reservedItemId = results.rows[0].id;
+										reservedItemId = res.rows[0].id;
 										console.log("reserved it id: " + reservedItemId);
 									}
 								});
