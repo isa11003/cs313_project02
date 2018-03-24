@@ -124,7 +124,7 @@ express()
 					if (err)
 						console.log("failed to retrieve new person");
 					else{
-						personId = result;
+						personId = result.rows[0];
 						console.log("person id received: " + personId);
 					}
 				});
@@ -136,38 +136,28 @@ express()
 					else{
 						itemId = result.rows[0];
 						console.log(itemId);
-
-						pool.query(itemQuery, function(err, result){
-							if (err){
-								console.log("failed to find item");
-							}
-							else{
-								itemId = result.rows[0];
-								console.log(itemId);
 								
-								var reservedItemQuery = "INSERT INTO reserveditem (personid, itemid) VALUES (" + personId + ", " + itemId + ")" ;
+						var reservedItemQuery = "INSERT INTO reserveditem (personid, itemid) VALUES (" + personId + ", " + itemId + ")" ;
 		
-								pool.query(reservedItemQuery, function(err, result){
-									if (err)
-										console.log("failed to reserve item");
-									else{
-										reservedItemId = results.rows[0].id;
+						pool.query(reservedItemQuery, function(err, result){
+							if (err)
+								console.log("failed to reserve item");
+							else{
+								reservedItemId = results.rows[0].id;
 											
-										var reservationQuery = "INSERT INTO reservation(reserveditemid, day) VALUES (" + reservedItemId + ", " + date + ")";
+								var reservationQuery = "INSERT INTO reservation(reserveditemid, day) VALUES (" + reservedItemId + ", " + date + ")";
 			
-										pool.query(reservationQuery, function(err, result){
-											if (err)
-												console.log("failed to create reservation");
-											else 
-												console.log("success!!!!!!");
-										});
-									}
+								pool.query(reservationQuery, function(err, result){
+								
+									if (err)
+										console.log("failed to create reservation");
+									else 
+										console.log("success!!!!!!");
 								});
-							}
-						});
-
-					}
-				});
+								}
+							});
+						}
+					});				
 			}
 		});
 		
