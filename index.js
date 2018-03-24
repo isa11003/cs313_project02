@@ -143,7 +143,7 @@ express()
 							if (err)
 								console.log("failed to reserve item");
 							else{
-								var itemIdQuery = "SELECT id FROM reserveditem WHERE personid = '" + personId + "' AND itemid = '" +itemId + "'";
+								var itemIdQuery = "SELECT id FROM reserveditem WHERE personid = '" + personId + "' AND itemid = '" + itemId + "'";
 								
 								pool.query(itemIdQuery, function(err, result){
 									if (err)
@@ -163,10 +163,10 @@ express()
 									else 
 										console.log("success!!!!!!");
 								});
-								}
-							});
-						}
-					});				
+							}
+						});
+					}
+				});				
 			}
 		});
 		
