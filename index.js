@@ -162,8 +162,8 @@ express()
 		});
 		
 		
-	   
-	   res.render("person id:" + personId + "item id: " + itemId + "reserved item id: " + reservedItemId);
+	   res.render('home');
+	   //res.render("person id:" + personId + "item id: " + itemId + "reserved item id: " + reservedItemId);
    })
    .get('/about-us', (req, res) =>{
 	   res.render('aboutUs');
