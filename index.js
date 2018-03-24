@@ -110,7 +110,7 @@ express()
 		
 		pool.query(personQuery, function(err, result){
 			if (err)
-				alert("query failed");
+				console.log("query failed");
 			else
 				personId = result.rows[0].id;
 		})
@@ -118,7 +118,7 @@ express()
 		
 		pool.query(itemQuery, function(err, result){
 			if (err)
-				alert("failed to find item");
+				console.log("failed to find item");
 			else
 				itemId = result.rows[0];
 		})
@@ -127,7 +127,7 @@ express()
 		
 		pool.query(reservedItemQuery, function(err, result){
 			if (err)
-				alert("failed to reserve item");
+				console.log("failed to reserve item");
 			else
 				reservedItemId = results.rows[0].id;
 		})
@@ -136,9 +136,9 @@ express()
 		
 		pool.query(reservationQuery, function(err, result){
 			if (err)
-				alert("failed to create reservation");
+				console.log("failed to create reservation");
 			else 
-				alert("success!!!!!!");
+				console.log("success!!!!!!");
 		})
 	   
 	   res.render('admin');
