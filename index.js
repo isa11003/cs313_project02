@@ -88,7 +88,12 @@ express()
 	   
 	   var query = "INSERT INTO item (name, description, quantity) VALUES ('" + name + "', '" + description + "', '" + quantity + "')";
 	   
-	   pool.query(query);
+	   pool.query(query, function(err, result){
+			if (err)
+				console.log("query failed");
+			else
+				console.log("didnt fail");
+	   });
 	   
 	   res.render('admin');
    })
