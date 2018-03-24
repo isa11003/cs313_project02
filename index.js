@@ -113,11 +113,23 @@ express()
 		var personQuery = "INSERT INTO person (firstname, lastname, email, phone) VALUES ('" + first + "', '" + last + "', '" + email + "', '" + phone + "')";
 		var itemQuery = "SELECT id FROM item WHERE name = '" + item + "'";
 		
+		var findPersonQuery = "SELECT id FROM person WHERE firstname = '" + first + "' AND lastname = '" + last + "'";
+		
 		pool.query(personQuery, function(err, result){
 			if (err)
 				console.log("query failed");
 			else{
 				personId = result.rows[0].id;
+			
+				pool.query(findPersonQuery, function(err, result){
+					if (err)
+						console.log("failed to retrieve new person")
+					else
+						personId = result;
+					
+					console.log("person id received: " + personId);
+					
+				});
 			
 				pool.query(itemQuery, function(err, result){
 					if (err){
@@ -162,7 +174,7 @@ express()
 		});
 		
 		
-	   res.render('home');
+	   res.render('home'); 	
 	   //res.render("person id:" + personId + "item id: " + itemId + "reserved item id: " + reservedItemId);
    })
    .get('/about-us', (req, res) =>{
