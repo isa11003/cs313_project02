@@ -117,16 +117,16 @@ express()
 		
 		pool.query(personQuery, function(err, result){
 			if (err)
-				console.log("query failed");
-			else{			
+				console.log("could not insert person");
+			else{
+			
 				pool.query(findPersonQuery, function(err, result){
 					if (err)
-						console.log("failed to retrieve new person")
-					else
+						console.log("failed to retrieve new person");
+					else{
 						personId = result;
-					
-					console.log("person id received: " + personId);
-					
+						console.log("person id received: " + personId);
+					}
 				});
 			
 				pool.query(itemQuery, function(err, result){
