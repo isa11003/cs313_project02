@@ -124,7 +124,7 @@ express()
 					if (err)
 						console.log("failed to retrieve new person");
 					else{
-						personId = result.rows.id;
+						personId = result.rows[0].id;
 						console.log("person id received: " + personId);
 					}
 				});
@@ -134,7 +134,7 @@ express()
 						console.log("failed to find item");
 					}
 					else{
-						itemId = result.rows.id;
+						itemId = result.rows[0].id;
 						console.log(itemId);
 								
 						var reservedItemQuery = "INSERT INTO reserveditem (personid, itemid) VALUES (" + personId + ", " + itemId + ")" ;
@@ -149,7 +149,7 @@ express()
 									if (err)
 										console.log("error checking item id");
 									else{
-										reservedItemId = results.rows.id;
+										reservedItemId = results.rows[0].id;
 										console.log("reserved it id: " + reservedItemId);
 									}
 								});
