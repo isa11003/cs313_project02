@@ -106,7 +106,7 @@ express()
 		var reservedItemId;
 		
 		var personQuery = "INSERT INTO person (firstname, lastname, email, phone) VALUES ('" + first + "', '" + last + "', '" + email + "', '" + phone + "')";
-		var itemQuery = "SELECT id FROM item WHERE = '" + item + "'";
+		var itemQuery = "SELECT id FROM item WHERE name = '" + item + "'";
 		
 		pool.query(personQuery, function(err, result){
 			if (err)
@@ -117,10 +117,13 @@ express()
 		
 		
 		pool.query(itemQuery, function(err, result){
-			if (err)
+			if (err){
 				console.log("failed to find item");
-			else
+			}
+			else{
 				itemId = result.rows[0];
+				console.log(itemId);
+			}
 		});
 		
 		var reservedItemQuery = "INSERT INTO reserveditem (personid, itemid) VALUES (" + personId + ", " + itemId + ")" ;
