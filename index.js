@@ -135,7 +135,7 @@ express()
 					}
 					else{
 						itemId = result.rows[0].id;
-						console.log(itemId);
+						console.log("Item id: " + itemId);
 								
 						var reservedItemQuery = "INSERT INTO reserveditem (personid, itemid) VALUES (" + personId + ", " + itemId + ")" ;
 		
@@ -143,7 +143,7 @@ express()
 							if (err)
 								console.log("failed to reserve item");
 							else{
-								var itemIdQuery = "SELECT ID FROM reserveditem WHERE personid = '" + personId + "' AND itemid = '" +itemId + "'";
+								var itemIdQuery = "SELECT id FROM reserveditem WHERE personid = '" + personId + "' AND itemid = '" +itemId + "'";
 								
 								pool.query(itemIdQuery, function(err, result){
 									if (err)
