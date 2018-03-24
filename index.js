@@ -124,7 +124,7 @@ express()
 					if (err)
 						console.log("failed to retrieve new person");
 					else{
-						personId = result.rows[0];
+						personId = JSON.parse(result.rows[0]);
 						console.log("person id received: " + personId);
 					}
 				});
