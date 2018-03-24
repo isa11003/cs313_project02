@@ -113,7 +113,7 @@ express()
 				console.log("query failed");
 			else
 				personId = result.rows[0].id;
-		})
+		});
 		
 		
 		pool.query(itemQuery, function(err, result){
@@ -121,7 +121,7 @@ express()
 				console.log("failed to find item");
 			else
 				itemId = result.rows[0];
-		})
+		});
 		
 		var reservedItemQuery = "INSERT INTO reserveditem (personid, itemid) VALUES (" + personId + ", " + itemId + ")" ;
 		
@@ -130,7 +130,7 @@ express()
 				console.log("failed to reserve item");
 			else
 				reservedItemId = results.rows[0].id;
-		})
+		});
 		
 		var reservationQuery = "INSERT INTO reservation(reserveditemid, day) VALUES (" + reservedItemId + ", " + date + ")";
 		
@@ -139,7 +139,7 @@ express()
 				console.log("failed to create reservation");
 			else 
 				console.log("success!!!!!!");
-		})
+		});
 	   
 	   res.render('admin');
    })
