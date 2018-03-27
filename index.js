@@ -3,6 +3,11 @@ const path = require('path')
 const PORT = process.env.PORT || 5000
 const { Pool, Client } = require('pg')
 var bodyParser = require('body-parser')
+var session = require('client-sessions');
+const duration = 30 * 60 * 1000;
+const active = 5 * 60 * 1000;
+const saltRounds = 10;
+var bcrypt = require('bcrypt');
 var pg = require('pg');
 var app = express();
 var nodemailer = require('nodemailer');
@@ -47,7 +52,7 @@ express()
 		if (err)
 			res.send("didn't get person");
 		else
-			res.json(result.rows[0]);
+			res.json(result.rows[0].id);
 		})
 //	pool.end();
 	})
@@ -71,7 +76,7 @@ express()
 			from: req.body.email,
 			to: 'taylorhisaacson@gmail.com',
 			subject: 'FROM: ' + req.body.name,
-			text: 'FROM: ' + req.body.name + '\n' + req.body.message + '\n\n reply to:  ' + req.body.email
+			text: 'FROM: ' + req.body.name + '\n\n' + req.body.message + '\n\n reply to:  ' + req.body.email
 		};
 
 		transporter.sendMail(mailOptions, function(error, info){
@@ -97,7 +102,7 @@ express()
 			if (err)
 				console.log("query failed");
 			else
-				console.log("didnt fail");
+				console.log("didn't fail");
 	   });
 	   
 	   res.render('admin');
@@ -212,6 +217,7 @@ express()
 		})
 //		pool.end();
    })
+   //This is only here because it has not yet been graded
   .get('/post', (req, res) => {
 	 var weight = Number(req.query.weight);
 	 var postage = req.query.postage;
