@@ -107,18 +107,12 @@ express()
 	   pool.query(query, function(err, result){
 			if (err)
 			{
-				console.log("query failed");
-				res.render("There was a problem and the item didn't get added to the data base");
+				console.log("query failed to create item");
+				res.json("There was a problem and the item didn't get added to the data base");
 			}
 			else{
 				console.log("didn't fail");
-				pool.query("SELECT * FROM item", function(err, result){
-
-					if (err)
-						res.send("error in item retrieval");
-					else
-					res.render('admin', {results: result.rows});
-				});
+				res.render('home');
 			}
 	   });
    })
@@ -197,11 +191,8 @@ express()
 			}
 		});
 		
-		pool.query("SELECT * FROM item", function(err, result){
-			if (err)
-				res.send("error in item retrieval");
-			else
-				res.render('admin', {results: result.rows});
+		res.render('home');
+		
 		});
    })
    .get('/about-us', (req, res) =>{
