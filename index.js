@@ -124,9 +124,7 @@ express()
 					if (err)
 						console.log("failed to retrieve new person");
 					else{
-						var string = JSON.stringify(result.rows)
-						var json = JSON.parse(string);
-						json = JSON.parse(json);
+						var json = JSON.parse(result.rows[0]);
 						personId = json.id;
 						console.log("person id received: " + personId);
 					}
@@ -137,7 +135,7 @@ express()
 						console.log("failed to find item");
 					}
 					else{
-						var json = JSON.parse(result.rows);
+						var json = JSON.parse(result.rows[0]);
 						itemId = json.id;
 						console.log("Item id: " + itemId);
 								
