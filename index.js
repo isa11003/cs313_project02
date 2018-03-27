@@ -54,7 +54,7 @@ express()
 		else
 			res.json(result.rows[0].id);
 		})
-//	pool.end();
+	pool.end();
 	})
 	
 	.get('/home', (req, res) =>{
@@ -89,6 +89,11 @@ express()
 	   res.render('home');
    })
    .get('/admin', (req, res) =>{
+	   	pool = new Pool({
+			connectionString: url
+		});
+
+	   
 	   pool.query("SELECT * FROM item", function(err, result){
 
 		if (err)
@@ -96,6 +101,7 @@ express()
 		else
 			res.render('admin', {results: result.rows});
 		});
+		pool.end();
    })
    .post('/createItem', (req, res) =>{
 	   var name = req.body.name;
@@ -103,6 +109,11 @@ express()
 	   var quantity = req.body.quantity;
 	   
 	   var query = "INSERT INTO item (name, description, quantity) VALUES ('" + name + "', '" + description + "', " + quantity + ")";
+	   
+	   	pool = new Pool({
+			connectionString: url
+		});
+
 	   
 	   pool.query(query, function(err, result){
 			if (err)
@@ -115,6 +126,8 @@ express()
 				res.render('home');
 			}
 	   });
+	   
+	   pool.end();
    })
    .post('/createReservation', (req, res) =>{
 	   
@@ -133,6 +146,11 @@ express()
 		var itemQuery = "SELECT id FROM item WHERE name = '" + item + "'";
 		
 		var findPersonQuery = "SELECT id FROM person WHERE firstname = '" + first + "' AND lastname = '" + last + "'";
+		
+		pool = new Pool({
+			connectionString: url
+		});
+
 		
 		pool.query(personQuery, function(err, result){
 			if (err)
@@ -191,7 +209,7 @@ express()
 		});
 		
 		res.render('home');
-		
+		pool.end();
    })
    .get('/about-us', (req, res) =>{
 	   res.render('aboutUs');
@@ -200,6 +218,12 @@ express()
 	   res.render('contactUs');
    })
    .get('/calendar', (req, res) =>{
+	   
+	   	pool = new Pool({
+			connectionString: url
+		});
+
+	   
 	   pool.query("SELECT day, name, lastname, firstname, itemid, personid, reserveditemid, itemid FROM reservation JOIN reserveditem ON reservation.reserveditemid = reserveditem.id JOIN item ON reserveditem.itemid = item.id JOIN person ON reserveditem.personid = person.id", function(err, result){
 		  
 		if (err)
@@ -209,20 +233,25 @@ express()
 			res.render('calendar', {results: result.rows});
 		}
 		})
-//		pool.end();
+		pool.end();
    })
    .get('/contract', (req, res) =>{
 	   res.render('contract');
    })
    .get('/items', (req, res) =>{
-	   pool.query("SELECT * FROM item", function(err, result){
+	   
+		pool = new Pool({
+			connectionString: url
+		});
+
+		pool.query("SELECT * FROM item", function(err, result){
 
 		if (err)
 			res.send("error in items");
 		else
 			res.render('items', {results: result.rows});
 		})
-//		pool.end();
+		pool.end();
    })
    //This is only here because it has not yet been graded
   .get('/post', (req, res) => {
