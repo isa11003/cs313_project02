@@ -193,7 +193,6 @@ express()
 		
 		res.render('home');
 		
-		});
    })
    .get('/about-us', (req, res) =>{
 	   res.render('aboutUs');
