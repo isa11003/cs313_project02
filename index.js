@@ -112,7 +112,13 @@ express()
 			}
 			else{
 				console.log("didn't fail");
-				res.render('admin');
+				pool.query("SELECT * FROM item", function(err, result){
+
+					if (err)
+						res.send("error in item retrieval");
+					else
+					res.render('admin', {results: result.rows});
+				})
 			}
 	   });
    })
@@ -191,9 +197,12 @@ express()
 			}
 		});
 		
-		
-	   res.render('admin'); 	
-	   //res.render("person id:" + personId + "item id: " + itemId + "reserved item id: " + reservedItemId);
+		pool.query("SELECT * FROM item", function(err, result){
+			if (err)
+				res.send("error in item retrieval");
+			else
+				res.render('admin', {results: result.rows});
+		})
    })
    .get('/about-us', (req, res) =>{
 	   res.render('aboutUs');
