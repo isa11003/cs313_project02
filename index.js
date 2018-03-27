@@ -47,7 +47,7 @@ express()
 	  res.send("testing");
   })
   .get('/getPerson', (req, res) => {
-		pool.query("SELECT id FROM person WHERE name = 'brooke'", function(err, result){
+		pool.query("SELECT id FROM person WHERE firstname = 'brooke'", function(err, result){
 
 		if (err)
 			res.send("didn't get person");
