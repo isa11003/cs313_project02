@@ -149,12 +149,12 @@ express()
 					}
 				});
 			
-				pool.query(itemQuery, function(err, result){
+				pool.query(itemQuery, function(err, rest){
 					if (err){
 						console.log("failed to find item");
 					}
 					else{
-						itemId = JSON.parse(result.rows[0].id); 
+						itemId = JSON.parse(rest.rows[0].id); 
 						console.log("Item id: " + itemId);
 								
 						var reservedItemQuery = "INSERT INTO reserveditem (personid, itemid) VALUES (" + personId + ", " + itemId + ")" ;
