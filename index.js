@@ -107,7 +107,7 @@ express()
 	   pool.query(query, function(err, result){
 			if (err)
 			{
-				console.log("query failed to create item");
+				console.log("query failed to create item: " + err);
 				res.send("There was a problem and the item didn't get added to the data base");
 			}
 			else{
