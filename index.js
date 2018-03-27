@@ -118,7 +118,7 @@ express()
 						res.send("error in item retrieval");
 					else
 					res.render('admin', {results: result.rows});
-				})
+				});
 			}
 	   });
    })
@@ -202,7 +202,7 @@ express()
 				res.send("error in item retrieval");
 			else
 				res.render('admin', {results: result.rows});
-		})
+		});
    })
    .get('/about-us', (req, res) =>{
 	   res.render('aboutUs');
