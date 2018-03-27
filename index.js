@@ -154,8 +154,7 @@ express()
 						console.log("failed to find item");
 					}
 					else{
-						var json = JSON.parse(result.rows[0].id);
-						itemId = json;
+						itemId = JSON.parse(result.rows[0].id); 
 						console.log("Item id: " + itemId);
 								
 						var reservedItemQuery = "INSERT INTO reserveditem (personid, itemid) VALUES (" + personId + ", " + itemId + ")" ;
