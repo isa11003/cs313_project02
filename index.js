@@ -66,7 +66,7 @@ express()
 			from: req.body.email,
 			to: 'taylorhisaacson@gmail.com',
 			subject: 'FROM: ' + req.body.name,
-			text: 'FROM: ' + req.body.name + '\n' + req.body.message + '\n\n reply to:  ' + req.query.email
+			text: 'FROM: ' + req.body.name + '\n' + req.body.message + '\n\n reply to:  ' + req.body.email
 		};
 
 		transporter.sendMail(mailOptions, function(error, info){
