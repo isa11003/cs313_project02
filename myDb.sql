@@ -13,7 +13,7 @@ CREATE TABLE person
 	firstname VARCHAR(100) NOT NULL,
 	lastname VARCHAR(100) NOT NULL,
 	email TEXT NOT NULL,
-	phone INT NOT NULL
+	phone BIGINT NOT NULL DEFAULT 0;
 );
 
 CREATE TABLE reserveditem
