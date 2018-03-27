@@ -22,7 +22,11 @@
 			<input type="text" placeholder="person's last name" name="last"><br />
 			<input type="text" placeholder="person's email" name="email"><br />
 			<input type="text" placeholder="person's phone number" name="phone"><br />
-			<input type="text" placeholder="item" name="item"><br />
+			<select name = "item" placeholder="item">
+				<% results.forEach(function(r) { %>
+					<option value="<%= r.name %>"><%= r.name %> </option>
+				<% }); %>
+			</select>
 			<input type="text" placeholder="amount" name="amount"><br />
 			<input type="text" placeholder="date 'ex: 1990-03-23'" name="date"><br />
 			<input type="submit">

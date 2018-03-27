@@ -89,7 +89,13 @@ express()
 	   res.render('home');
    })
    .get('/admin', (req, res) =>{
-	   res.render('admin');
+	   pool.query("SELECT * FROM item", function(err, result){
+
+		if (err)
+			res.send("error in item retrieval");
+		else
+			res.render('admin', {results: result.rows});
+		})
    })
    .post('/createItem', (req, res) =>{
 	   var name = req.body.name;
