@@ -171,9 +171,8 @@ express()
 										console.log("error checking item id");
 									else{
 										reservedItemId = JSON.parse(res.rows[0].id);
-										console.log("reserved item id: " + reservedItemId);
-													
-										var reservationQuery = "INSERT INTO reservation(reserveditemid, day) VALUES (" + reservedItemId + ", " + date + ")";
+														
+										var reservationQuery = "INSERT INTO reservation(reserveditemid, day) VALUES (" + reservedItemId + ", '" + date + "')";
 					
 										console.log("reserved item id: " + reservedItemId);
 										console.log("DATE:  " + date);
