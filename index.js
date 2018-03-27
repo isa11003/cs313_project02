@@ -2,6 +2,7 @@ const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
 const { Pool, Client } = require('pg')
+var bodyParser = require('body-parser')
 var pg = require('pg');
 var app = express();
 var nodemailer = require('nodemailer');
@@ -31,6 +32,10 @@ else{
 
 express()
   .use(express.static(path.join(__dirname, 'public')))
+  .use(bodyParser.json())
+  .use(bodyParser.urlencoded({
+	  extended: true
+  }))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/test', (req, res) => {
