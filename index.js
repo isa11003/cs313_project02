@@ -91,10 +91,10 @@ express()
    .get('/admin', (req, res) =>{
 	   res.render('admin');
    })
-   .get('/createItem', (req, res) =>{
-	   var name = req.query.name;
-	   var description = req.query.description;
-	   var quantity = req.query.quantity;
+   .post('/createItem', (req, res) =>{
+	   var name = req.body.name;
+	   var description = req.body.description;
+	   var quantity = req.body.quantity;
 	   
 	   var query = "INSERT INTO item (name, description, quantity) VALUES ('" + name + "', '" + description + "', '" + quantity + "')";
 	   
@@ -107,15 +107,15 @@ express()
 	   
 	   res.render('admin');
    })
-   .get('/createReservation', (req, res) =>{
+   .post('/createReservation', (req, res) =>{
 	   
-		var first = req.query.first;
-		var last = req.query.last;
-		var email = req.query.email;
-		var phone = req.query.phone;
-		var item = req.query.item;
-		var quantity = req.query.amount;
-		var date = req.query.date;
+		var first = req.body.first;
+		var last = req.body.last;
+		var email = req.body.email;
+		var phone = req.body.phone;
+		var item = req.body.item;
+		var quantity = req.body.amount;
+		var date = req.body.date;
 		var personId = 0;
 		var itemId = 0;
 		var reservedItemId = 0;

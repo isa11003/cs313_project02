@@ -7,7 +7,7 @@
 <body style="text-align: center;">
 
 	<% include partials/header.ejs %>
-		<form action="createItem" method="get">
+		<form action="createItem" method="post">
 			<h2>Create a new item</h2><br />
 			<input type="text" placeholder="name" name="name"><br />
 			<input type="text" placeholder="description" name="description"><br />
@@ -15,7 +15,7 @@
 			<input type="submit">
 		</form>
 		<br />
-		<form action="createReservation" method="get">
+		<form action="createReservation" method="post">
 			<h2>Create a new reservation</h2>
 			<br />
 			<input type="text" placeholder="Person's first name" name="first"> <br />
