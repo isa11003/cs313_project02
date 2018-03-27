@@ -47,12 +47,12 @@ express()
 	  res.send("testing");
   })
   .get('/getPerson', (req, res) => {
-		pool.query("SELECT id FROM person", function(err, result){
+		pool.query("SELECT id FROM person WHERE name = 'brooke'", function(err, result){
 
 		if (err)
 			res.send("didn't get person");
 		else
-			res.json(result.rows[0].id);
+			res.json(result.rows[0]);
 		})
 //	pool.end();
 	})
@@ -134,8 +134,8 @@ express()
 					if (err)
 						console.log("failed to retrieve new person");
 					else{
-						var json = JSON.parse(result.rows[0]);
-						personId = json.id;
+						var json = JSON.parse(result.rows[0].id);
+						personId = json;
 						console.log("person id received: " + personId);
 					}
 				});
