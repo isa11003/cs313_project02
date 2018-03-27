@@ -95,7 +95,7 @@ express()
 			res.send("error in item retrieval");
 		else
 			res.render('admin', {results: result.rows});
-		})
+		});
    })
    .post('/createItem', (req, res) =>{
 	   var name = req.body.name;
@@ -108,7 +108,7 @@ express()
 			if (err)
 			{
 				console.log("query failed to create item");
-				res.json("There was a problem and the item didn't get added to the data base");
+				res.send("There was a problem and the item didn't get added to the data base");
 			}
 			else{
 				console.log("didn't fail");
