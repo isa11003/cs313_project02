@@ -145,8 +145,8 @@ express()
 						console.log("failed to find item");
 					}
 					else{
-						var json = JSON.parse(result.rows[0]);
-						itemId = json.id;
+						var json = JSON.parse(result.rows[0].id);
+						itemId = json;
 						console.log("Item id: " + itemId);
 								
 						var reservedItemQuery = "INSERT INTO reserveditem (personid, itemid) VALUES (" + personId + ", " + itemId + ")" ;
@@ -161,7 +161,7 @@ express()
 									if (err)
 										console.log("error checking item id");
 									else{
-										reservedItemId = res.rows[0];
+										reservedItemId = JSON.parse(res.rows[0].id);
 										console.log("reserved it id: " + reservedItemId);
 									}
 								});
