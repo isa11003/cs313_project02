@@ -42,7 +42,7 @@ express()
 		if (err)
 			res.send("didn't get person");
 		else
-			res.json(result.rows);
+			res.json(result.rows.id);
 		})
 //	pool.end();
 	})
@@ -50,7 +50,7 @@ express()
 	.get('/home', (req, res) =>{
 	   res.render('home');
    })
-   .get('/email', (req, res) =>{
+   .post('/email', (req, res) =>{
 	   
 	   
 	   
@@ -63,10 +63,10 @@ express()
 		});
 
 		var mailOptions = {
-			from: req.query.email,
+			from: req.body.email,
 			to: 'taylorhisaacson@gmail.com',
-			subject: 'FROM: ' + req.query.name,
-			text: 'FROM: ' + req.query.name + '\n' + req.query.message + '\n\n reply to:  ' + req.query.email
+			subject: 'FROM: ' + req.body.name,
+			text: 'FROM: ' + req.body.name + '\n' + req.body.message + '\n\n reply to:  ' + req.query.email
 		};
 
 		transporter.sendMail(mailOptions, function(error, info){
