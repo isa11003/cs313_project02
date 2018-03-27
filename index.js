@@ -102,7 +102,7 @@ express()
 	   var description = req.body.description;
 	   var quantity = req.body.quantity;
 	   
-	   var query = "INSERT INTO item (name, description, quantity) VALUES ('" + name + "', '" + description + "', '" + quantity + "')";
+	   var query = "INSERT INTO item (name, description, quantity) VALUES ('" + name + "', '" + description + "', " + quantity + ")";
 	   
 	   pool.query(query, function(err, result){
 			if (err)
