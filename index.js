@@ -106,8 +106,10 @@ express()
 	   
 	   pool.query(query, function(err, result){
 			if (err)
+			{
 				console.log("query failed");
-				res.renderss("There was a problem and the item didn't get added to the data base");
+				res.render("There was a problem and the item didn't get added to the data base");
+			}
 			else{
 				console.log("didn't fail");
 				res.render('admin');
