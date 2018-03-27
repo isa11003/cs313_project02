@@ -47,7 +47,7 @@ express()
 	  res.send("testing");
   })
   .get('/getPerson', (req, res) => {
-		pool.query("SELECT id FROM person WHERE firstname = 'brooke' AND lastname = 'nelson'", function(err, result){
+		pool.query("SELECT id FROM person", function(err, result){
 
 		if (err)
 			res.send("didn't get person");
@@ -108,9 +108,10 @@ express()
 			if (err)
 				console.log("query failed");
 				res.renderss("There was a problem and the item didn't get added to the data base");
-			else
+			else{
 				console.log("didn't fail");
 				res.render('admin');
+			}
 	   });
    })
    .post('/createReservation', (req, res) =>{
