@@ -189,7 +189,7 @@ express()
 		});
 		
 		
-	   res.render('home'); 	
+	   res.render('admin'); 	
 	   //res.render("person id:" + personId + "item id: " + itemId + "reserved item id: " + reservedItemId);
    })
    .get('/about-us', (req, res) =>{
