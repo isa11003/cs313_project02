@@ -171,18 +171,19 @@ express()
 										console.log("error checking item id");
 									else{
 										reservedItemId = JSON.parse(res.rows[0].id);
-										console.log("reserved it id: " + reservedItemId);
+										console.log("reserved item id: " + reservedItemId);
+													
+										var reservationQuery = "INSERT INTO reservation(reserveditemid, day) VALUES (" + reservedItemId + ", " + date + ")";
+					
+										console.log("reserved item id: " + reservedItemId);
+										console.log("DATE:  " + date);
+										pool.query(reservationQuery, function(err, result){
+											if (err)
+												console.log("failed to create reservation");
+											else 
+												console.log("success!!!!!!");
+										});
 									}
-								});
-											
-								var reservationQuery = "INSERT INTO reservation(reserveditemid, day) VALUES (" + reservedItemId + ", " + date + ")";
-			
-								pool.query(reservationQuery, function(err, result){
-								
-									if (err)
-										console.log("failed to create reservation");
-									else 
-										console.log("success!!!!!!");
 								});
 							}
 						});
