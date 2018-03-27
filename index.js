@@ -42,7 +42,7 @@ express()
 		if (err)
 			res.send("didn't get person");
 		else
-			res.json(result.rows.id);
+			res.json(result.rows[0]);
 		})
 //	pool.end();
 	})
