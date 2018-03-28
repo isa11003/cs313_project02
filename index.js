@@ -152,7 +152,7 @@ express()
 			connectionString: url
 		});
 
-		pool.query(findPersonQuery, function(err, result){
+		pool.query(findPersonQuery, function(err, firstResult){
 			if (err){
 				console.log("failed to find returning customer");
 			
@@ -214,7 +214,7 @@ express()
 			}
 
 			else{
-				personId = JSON.parse(result.rows[0].id);
+				personId = JSON.parse(firstResult.rows[0].id);
 				
 				pool.query(itemQuery, function(err, rest){
 					if (err){
