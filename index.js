@@ -101,7 +101,7 @@ express()
    .get('/login', (req, res) =>{
 	   res.render('login');
    })
-	.get('/auth', (req, res) =>{
+	.post('/auth', (req, res) =>{
 	pool.query("SELECT username, password FROM users", (err, response) => {
 		if (req.body.username == response.rows[0].username && req.body.password == response.rows[0].password){
 			var result = {
