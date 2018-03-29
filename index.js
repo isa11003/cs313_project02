@@ -121,14 +121,16 @@ express()
 				console.log("query failed to create item: " + err);
 				res.send("There was a problem and the item didn't get added to the data base");
 			}
-			else{
+			else
+			{
 				console.log("didn't fail");
 				pool.query("SELECT * FROM item", function(err, result){
 
 					if (err)
 						result.send("error in item retrieval");
 					else
-						result.render('admin', {results: result.rows});
+						result.send("<a href='/admin' >Back</a>
+//						result.render('admin', {results: result.rows});
 				});
 			}
 	   });
