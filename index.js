@@ -123,7 +123,7 @@ express()
 			}
 			else{
 				console.log("didn't fail");
-				req.redirect('/admin');
+				res.redirect('/admin');
 			}
 	   });
 	   
@@ -166,7 +166,7 @@ express()
 					}
 					else{
 						console.log("SUCCESS!!!!!!!!!!!");
-						req.redirect('/admin');
+						res.redirect('/admin');
 					}
 				});
 			}					
