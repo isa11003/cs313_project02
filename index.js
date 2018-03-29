@@ -104,22 +104,25 @@ express()
 	   else
 	   res.render('login');
    })
-   .get('/admin', (req, res) =>{
-
-/*		pool.query("SELECT name, password FROM admin", (err, response) => {
-			if (req.body.username == response.rows[0].name && req.body.password == response.rows[0].password){
-				
-				req.session.admin = req.body.username;
+   .post('/auth', (req,res) =>{
+		pool.query("SELECT username, password FROM users", (err, response) => {
+			if (req.body.username == response.rows[0].username && req.body.password == response.rows[0].password){
+				req.session.user = req.body.username;
+				return res.redirect('/admin');
 			}
 			else{
 				bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
-				var params = [req.body.username, hash];
-				pool.query("INSERT INTO admin (name, password) VALUES ($1,$2)", params, (err) => {});
-					
+					var params = [req.body.username, hash];
+					pool.query("INSERT INTO users (username, password) VALUES ($1,$2)", params, (err) => {});
+		
 				})
+				
+				return res.redirect('/home');
 			}
-		});
-	*/ 
+		})
+   })
+   .get('/admin', (req, res) =>{
+ 
 	   pool.query("SELECT * FROM item", function(err, result){
 
 		if (err)
@@ -148,7 +151,7 @@ express()
 				console.log("didn't fail");
 			}
 	   });
-	   res.render('home');
+	   return res.redirect('/admin');
 	   
 	//   pool.end();
    })
@@ -188,7 +191,7 @@ express()
 				});
 			}					
 		});
-		res.render('home')
+		return res.redirect('/admin')
 //		pool.end();
 			
    })
