@@ -123,13 +123,7 @@ express()
 			}
 			else{
 				console.log("didn't fail");
-				pool.query("SELECT * FROM item", function(err, result){
-
-					if (err)
-						res.send("error in item retrieval");
-					else
-						res.render('admin', {results: result.rows});
-				});
+				req.redirect('/admin');
 			}
 	   });
 	   
@@ -168,22 +162,14 @@ express()
 				pool.query(reservationQuery, function (err, res){
 					if (err)
 						console.log("error inserting into reservation" + err);
+						res.send('failed to create reservation');
 					else{
 						console.log("SUCCESS!!!!!!!!!!!");
-						
-						pool.query("SELECT * FROM item", function(err, results){
-
-							if (err)
-								res.send("error in item retrieval");
-							else
-								res.render('admin', {results: results.rows});
-						});
+						req.redirect('/admin');
 					}
 				});
 			}					
 		});
-		
-		res.render('home');
 //		pool.end();
 			
    })
