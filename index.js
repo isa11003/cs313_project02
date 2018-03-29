@@ -119,7 +119,7 @@ express()
 			if (err)
 			{
 				console.log("query failed to create item: " + err);
-				res.send("There was a problem and the item didn't get added to the data base");
+				res.status(301).send("There was a problem and the item didn't get added to the data base");
 			}
 			else{
 				console.log("didn't fail");
@@ -130,7 +130,7 @@ express()
 					else
 						res.render('admin', {results: result.rows});
 				});*/
-				res.send('/admin');
+				res.status(301).redirect('/admin');
 			}
 	   });
 	   
