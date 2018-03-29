@@ -7,7 +7,7 @@ CREATE TABLE item
 	description TEXT NOT NULL
 );
 
-/* These tables were deleted and made into one table, I made it this way because I thought it would be great
+/* These tables were deleted and made into one table, I made it this way originally because I thought it would be great
 	and could be used for multiple reserved items and not creating new people, you could see if people were
 	are returning customers or not. but it was too complicated and I am making this for my mom, and it is 
 	just easier to have a reservation table and one table fits her needs more.

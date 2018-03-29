@@ -102,12 +102,12 @@ express()
 	   if (req.session.admin != undefined)
 		   return res.redirect('/admin');
 	   else
-	   res.render('login');
+		res.render('login');
    })
    .post('/auth', (req,res) =>{
-		pool.query("SELECT username, password FROM users", (err, response) => {
-			if (req.body.username == response.rows[0].username && req.body.password == response.rows[0].password){
-				req.session.user = req.body.username;
+		pool.query("SELECT username, password FROM admin", (err, response) => {
+			if (req.body.username == response.rows[0].name && req.body.password == response.rows[0].password){
+				req.session.admin = req.body.username;
 				return res.redirect('/admin');
 			}
 			else{
@@ -122,14 +122,20 @@ express()
 		})
    })
    .get('/admin', (req, res) =>{
+	   
+		if (req.session.admin != undefined){
  
-	   pool.query("SELECT * FROM item", function(err, result){
+			pool.query("SELECT * FROM item", function(err, result){
 
-		if (err)
-			res.send("error in item retrieval");
-		else
+				if (err)
+					res.send("error in item retrieval");
+				else
 			res.render('admin', {results: result.rows});
-		});
+			});
+		}
+		else{
+			return res.redirect('/login');
+		}
 	//	pool.end();
    })
    .post('/createItem', (req, res) =>{
