@@ -105,7 +105,7 @@ express()
 		res.render('login');
    })
    .post('/auth', (req,res) =>{
-		pool.query("SELECT username, password FROM admin", (err, response) => {
+		pool.query("SELECT name, password FROM admin", (err, response) => {
 			if (err){
 				console.log("error looking for admin");
 				res.send("error error, danger will Robinson DANGER!!!!!!!!")
@@ -118,7 +118,7 @@ express()
 				else{
 					bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
 						var params = [req.body.username, hash];
-						pool.query("INSERT INTO users (username, password) VALUES ($1,$2)", params, (err) => {});
+						pool.query("INSERT INTO admin (name, password) VALUES ($1,$2)", params, (err) => {});
 			
 					})
 					
