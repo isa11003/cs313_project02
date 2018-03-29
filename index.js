@@ -123,13 +123,14 @@ express()
 			}
 			else{
 				console.log("didn't fail");
-				pool.query("SELECT * FROM item", function(err, result){
+			/*	pool.query("SELECT * FROM item", function(err, result){
 
 					if (err)
 						res.send("error in item retrieval");
 					else
 						res.render('admin', {results: result.rows});
-				});
+				});*/
+				res.redirect('/admin');
 			}
 	   });
 	   
