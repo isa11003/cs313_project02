@@ -157,7 +157,7 @@ express()
 			else{
 				itemId = JSON.parse(result.rows[0].id);
 				
-				var reservationQuery = "INSERT INTO reservation (itemid, quantity, firstname, lastname, email, phone, day) VALUE (" + itemid + ", " + quantity + ", '" + first + "', '" + last + "', '" + email + "', " + phone + ", '" + day + "')";
+				var reservationQuery = "INSERT INTO reservation (itemid, quantity, firstname, lastname, email, phone, day) VALUES (" + itemid + ", " + quantity + ", '" + first + "', '" + last + "', '" + email + "', " + phone + ", '" + day + "')";
 				
 				pool.query(reservationQuery, function (err, res){
 					if (err)
@@ -186,15 +186,15 @@ express()
 		});
 
 	   
-	   pool.query("SELECT day, name, lastname, firstname, quantity, itemid, email, phone FROM reservation JOIN item ON reservation.itemid = item.id", function(err, result){
-		  
-		if (err)
-			res.send("error in calendar");
-		else
-		{
-			res.render('calendar', {results: result.rows});
-		}
-		})
+		pool.query("SELECT day, name, lastname, firstname, quantity, itemid, email, phone FROM reservation JOIN item ON reservation.itemid = item.id", function(err, result){
+			
+			if (err)
+				res.send("error in calendar");
+			else
+			{
+				res.render('calendar', {results: result.rows});
+			}
+		});
 		pool.end();
    })
    .get('/contract', (req, res) =>{
