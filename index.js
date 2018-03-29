@@ -130,7 +130,7 @@ express()
 					else
 						res.render('admin', {results: result.rows});
 				});*/
-				res.status(301).redirect('/admin');
+				res.send('/admin');
 			}
 	   });
 	   
