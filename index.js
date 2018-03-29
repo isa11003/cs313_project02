@@ -126,7 +126,7 @@ express()
 				});*/
 			}
 	   });
-	   res.rend('home');
+	   res.render('home');
 	   
 	//   pool.end();
    })
