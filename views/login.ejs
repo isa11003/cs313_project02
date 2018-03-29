@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% include partials/head.ejs %>
+</head>
+
+<body>
+
+	<% include partials/header.ejs %>
+	<form action="email" method="post" target="_SELF" style="text-align: center;">
+		<input placeholder="username" name="name" type="text"> <br />
+		<input placeholder="password" name="pass" type="password"> <br />
+		<input type="submit" value="login">
+	</form>
+
+	<% include partials/footer %>
+	
+	
+</body>
+</html>

@@ -13,6 +13,15 @@ var app = express();
 var nodemailer = require('nodemailer');
 var pool = null;
 
+var verifyLogin = function (req, res, next) {
+	if (typeof req.session.user != "undefined"){
+		next();
+	}
+	else {
+	res.status(401).send("You broke me, now you can't login");
+	}
+} 
+
 
 if(process.env.DATABASE_URL){
 	var url = "postgres://wtzhtfgoffnsxy:906fb59ea78505391a4ad64e3785d0f5ee41a95a12223c0289f2077a092b3112@ec2-54-243-129-189.compute-1.amazonaws.com:5432/dmhjfhq7qqrce";
@@ -36,17 +45,18 @@ else{
 
 
 express()
-  .use(express.static(path.join(__dirname, 'public')))
-  .use(bodyParser.json())
-  .use(bodyParser.urlencoded({
+	.use(session({cookieName: 'session', secret: 'user-session', duration: duration, activeDuration: active,}))
+	.use(express.static(path.join(__dirname, 'public')))
+	.use(bodyParser.json())
+	.use(bodyParser.urlencoded({
 	  extended: true
-  }))
-  .set('views', path.join(__dirname, 'views'))
-  .set('view engine', 'ejs')
-  .get('/test', (req, res) => {
-	  res.send("testing");
-  })
-  .get('/getPerson', (req, res) => {
+	}))
+	.set('views', path.join(__dirname, 'views'))
+	.set('view engine', 'ejs')
+	.get('/test', (req, res) => {
+		res.send("testing");
+	})
+	.get('/getPerson', (req, res) => {
 		pool.query("SELECT id FROM person", function(err, result){
 
 		if (err)
@@ -59,7 +69,7 @@ express()
 	
 	.get('/home', (req, res) =>{
 	   res.render('home');
-   })
+	})
    .post('/email', (req, res) =>{
 	   
 	   
@@ -87,6 +97,29 @@ express()
 			}
 		});
 	   res.render('home');
+   })
+   .get('/login', (req, res) =>{
+	
+	pool.query("SELECT username, password FROM users", (err, response) => {
+		if (req.body.username == response.rows[0].username && req.body.password == response.rows[0].password){
+			var result = {
+				success: true
+			};
+			req.session.admin = req.body.username;
+			res.send(result);
+		}
+		else{
+			bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
+			var params = [req.body.username, hash];
+			pool.query("INSERT INTO users (username, password) VALUES ($1,$2)", params, (err) => {});
+				var result = {
+					success: false
+				};
+				res.render('home');
+			})
+		}
+	})
+	   next();
    })
    .get('/admin', (req, res) =>{
 	   	
