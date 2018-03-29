@@ -119,18 +119,17 @@ express()
 			if (err)
 			{
 				console.log("query failed to create item: " + err);
-				res.status(301).send("There was a problem and the item didn't get added to the data base");
+				res.send("There was a problem and the item didn't get added to the data base");
 			}
 			else{
 				console.log("didn't fail");
-			/*	pool.query("SELECT * FROM item", function(err, result){
+				pool.query("SELECT * FROM item", function(err, result){
 
 					if (err)
 						res.send("error in item retrieval");
 					else
 						res.render('admin', {results: result.rows});
-				});*/
-				res.status(301).redirect('/admin');
+				});
 			}
 	   });
 	   
