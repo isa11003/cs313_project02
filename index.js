@@ -123,7 +123,13 @@ express()
 			}
 			else{
 				console.log("didn't fail");
-				res.redirect('/admin');
+				pool.query("SELECT * FROM item", function(err, result){
+
+					if (err)
+						res.send("error in item retrieval");
+					else
+						res.render('admin', {results: result.rows});
+				});
 			}
 	   });
 	   
@@ -160,13 +166,18 @@ express()
 				var reservationQuery = "INSERT INTO reservation (itemid, quantity, firstname, lastname, email, phone, day) VALUES (" + itemId + ", " + quantity + ", '" + first + "', '" + last + "', '" + email + "', " + phone + ", '" + day + "')";
 				
 				pool.query(reservationQuery, function (err, res){
-					if (err){
+					if (err)
 						console.log("error inserting into reservation" + err);
-						res.send('failed to create reservation');
-					}
 					else{
 						console.log("SUCCESS!!!!!!!!!!!");
-						res.redirect('/admin');
+						
+						pool.query("SELECT * FROM item", function(err, results){
+
+							if (err)
+								res.send("error in item retrieval");
+							else
+								res.render('admin', {results: results.rows});
+						});
 					}
 				});
 			}					
