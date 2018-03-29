@@ -99,14 +99,15 @@ express()
 	   res.render('home');
    })
    .get('/login', (req, res) =>{
-	
+	   res.render('login');
+   })
+	.get('/auth', (req, res) =>{
 	pool.query("SELECT username, password FROM users", (err, response) => {
 		if (req.body.username == response.rows[0].username && req.body.password == response.rows[0].password){
 			var result = {
 				success: true
 			};
 			req.session.admin = req.body.username;
-			res.send(result);
 		}
 		else{
 			bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
@@ -115,7 +116,6 @@ express()
 				var result = {
 					success: false
 				};
-				res.render('home');
 			})
 		}
 	})
