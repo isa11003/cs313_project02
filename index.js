@@ -115,7 +115,7 @@ express()
 		});
 
 	   
-	   pool.query(query, function(err, result){
+	   pool.query(query, function(err, res){
 			if (err)
 			{
 				console.log("query failed to create item: " + err);
@@ -123,7 +123,13 @@ express()
 			}
 			else{
 				console.log("didn't fail");
-				res.render('home');
+				pool.query("SELECT * FROM item", function(err, result){
+
+					if (err)
+						res.send("error in item retrieval");
+					else
+						res.render('admin', {results: result.rows});
+				});
 			}
 	   });
 	   
@@ -162,11 +168,19 @@ express()
 				pool.query(reservationQuery, function (err, res){
 					if (err)
 						console.log("error inserting into reservation" + err);
-					else
+					else{
 						console.log("SUCCESS!!!!!!!!!!!");
+						
+						pool.query("SELECT * FROM item", function(err, results){
+
+							if (err)
+								res.send("error in item retrieval");
+							else
+								res.render('admin', {results: results.rows});
+						});
+					}
 				});
-			}			
-		
+			}					
 		});
 		
 		res.render('home');
