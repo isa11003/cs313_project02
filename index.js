@@ -106,7 +106,7 @@ express()
    })
    .get('/admin', (req, res) =>{
 
-		pool.query("SELECT name, password FROM admin", (err, response) => {
+/*		pool.query("SELECT name, password FROM admin", (err, response) => {
 			if (req.body.username == response.rows[0].name && req.body.password == response.rows[0].password){
 				
 				req.session.admin = req.body.username;
@@ -119,7 +119,7 @@ express()
 				})
 			}
 		});
-	 
+	*/ 
 	   pool.query("SELECT * FROM item", function(err, result){
 
 		if (err)
