@@ -118,6 +118,8 @@ express()
 				
 				console.log("username: " + userName);
 				console.log("password: " + password);
+				console.log(response.rows[0].name);
+				console.log(response.rows[0].password);
 				
 				if (userName == response.rows[0].name && password == response.rows[0].password){
 					req.session.admin = req.body.username;
