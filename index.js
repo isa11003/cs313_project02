@@ -99,7 +99,7 @@ express()
 	   res.render('home');
    })
    .get('/login', (req, res) =>{
-	   if (req.session.admin != "undefined")
+	   if (req.session.admin != undefined)
 		   return res.redirect('/admin');
 	   else
 	   res.render('login');
