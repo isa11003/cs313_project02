@@ -126,9 +126,9 @@ express()
 				pool.query("SELECT * FROM item", function(err, result){
 
 					if (err)
-						res.send("error in item retrieval");
+						result.send("error in item retrieval");
 					else
-						res.render('admin', {results: result.rows});
+						result.render('admin', {results: result.rows});
 				});
 			}
 	   });
