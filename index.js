@@ -118,7 +118,7 @@ express()
 				console.log("didn't fail");
 			}
 	   });
-	   res.render('/admin');
+	   res.render('home');
 	   
 	//   pool.end();
    })
@@ -158,7 +158,7 @@ express()
 				});
 			}					
 		});
-		res.render('/admin')
+		res.render('home')
 //		pool.end();
 			
    })
