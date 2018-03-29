@@ -54,7 +54,7 @@ express()
 		else
 			res.json(result.rows[0].id);
 		})
-	pool.end();
+//	pool.end();
 	})
 	
 	.get('/home', (req, res) =>{
@@ -101,7 +101,7 @@ express()
 		else
 			res.render('admin', {results: result.rows});
 		});
-		pool.end();
+	//	pool.end();
    })
    .post('/createItem', (req, res) =>{
 	   var name = req.body.name;
@@ -127,7 +127,7 @@ express()
 			}
 	   });
 	   
-	   pool.end();
+	//   pool.end();
    })
    .post('/createReservation', (req, res) =>{
 	   
@@ -170,7 +170,7 @@ express()
 		});
 		
 		res.render('home');
-		pool.end();
+//		pool.end();
 			
    })
    .get('/about-us', (req, res) =>{
@@ -195,7 +195,7 @@ express()
 				res.render('calendar', {results: result.rows});
 			}
 		});
-		pool.end();
+//		pool.end();
    })
    .get('/contract', (req, res) =>{
 	   res.render('contract');
@@ -213,7 +213,7 @@ express()
 			else
 				res.render('items', {results: result.rows});
 		});
-		pool.end();
+//		pool.end();
    })
    //This is only here because it has not yet been graded
   .get('/post', (req, res) => {
