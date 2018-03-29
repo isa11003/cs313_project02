@@ -105,13 +105,21 @@ express()
 		res.render('login');
    })
    .post('/auth', (req,res) =>{
+	   
+	   var userName = req.body.username;
+	   var password = req.body.password;
+	   
 		pool.query("SELECT name, password FROM admin", (err, response) => {
 			if (err){
 				console.log("error looking for admin");
 				res.send("error error, danger will Robinson DANGER!!!!!!!!")
 			}
 			else{
-				if (req.body.username == response.rows[0].name && req.body.password == response.rows[0].password){
+				
+				console.log("username: " + userName);
+				console.log("password: " + password);
+				
+				if (userName == response.rows[0].name && password == response.rows[0].password){
 					req.session.admin = req.body.username;
 					return res.redirect('/admin');
 				}
