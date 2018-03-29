@@ -159,7 +159,7 @@ express()
 			}
 
 			else{
-				if (result){
+				if (firstResult){
 					personId = JSON.parse(firstResult.rows[0].id);
 					
 					pool.query(itemQuery, function(err, rest){
