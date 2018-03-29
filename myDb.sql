@@ -7,13 +7,17 @@ CREATE TABLE item
 	description TEXT NOT NULL
 );
 
+/* These tables were deleted and made into one table, I made it this way because I thought it would be great
+	and could be used for multiple reserved items and not creating new people, you could see if people were
+	are returning customers or not. but it was too complicated and I am making this for my mom, and it is 
+	just easier to have a reservation table and one table fits her needs more.
 CREATE TABLE person
 (
 	id SERIAL NOT NULL PRIMARY KEY,
 	firstname VARCHAR(100) NOT NULL,
 	lastname VARCHAR(100) NOT NULL,
 	email TEXT NOT NULL,
-	phone BIGINT NOT NULL DEFAULT 0;
+	phone BIGINT NOT NULL DEFAULT 0
 );
 
 CREATE TABLE reserveditem
@@ -29,6 +33,19 @@ CREATE TABLE reservation
 	reserveditemid INT NOT NULL REFERENCES reserveditem(id),
 	day DATE NOT NULL,
 	UNIQUE (day, reserveditemid)
+);
+*/
+
+CREATE TABLE reservation
+(
+	id SERIAL NOT NULL PRIMARY KEY,
+	itemid INT NOT NULL REFERENCES item(id),
+	quantity INT NOT NULL,
+	firstname VARCHAR(100) NOT NULL,
+	lastname VARCHAR(100) NOT NULL,
+	email TEXT NOT NULL,
+	phone BIGINT NOT NULL DEFAULT 0,
+	day DATE NOT NULL
 );
 
 CREATE USER rentaluser WITH PASSWORD 'IsaacsonR';
