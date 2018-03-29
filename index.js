@@ -157,7 +157,7 @@ express()
 			else{
 				itemId = JSON.parse(result.rows[0].id);
 				
-				var reservationQuery = "INSERT INTO reservation (itemid, quantity, firstname, lastname, email, phone, day) VALUE (" + itemid + ", " + quantity + ", '" + first + "', '" + last + "', '" + email + "', " + phone + ", '" + day "')";
+				var reservationQuery = "INSERT INTO reservation (itemid, quantity, firstname, lastname, email, phone, day) VALUE (" + itemid + ", " + quantity + ", '" + first + "', '" + last + "', '" + email + "', " + phone + ", '" + day + "')";
 				
 				pool.query(reservationQuery, function (err, res){
 					if (err)
