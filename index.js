@@ -116,16 +116,17 @@ express()
 			else
 			{
 				console.log("didn't fail");
-				pool.query("SELECT * FROM item", function(err, result){
+				/*pool.query("SELECT * FROM item", function(err, result){
 
 					if (err)
 						result.send("error in item retrieval");
 					else
 						result.send("<a href='/admin' >Back</a>");
 //						result.render('admin', {results: result.rows});
-				});
+				});*/
 			}
 	   });
+	   res.rend('home');
 	   
 	//   pool.end();
    })
