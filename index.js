@@ -89,11 +89,7 @@ express()
 	   res.render('home');
    })
    .get('/admin', (req, res) =>{
-	   	pool = new Pool({
-			connectionString: url
-		});
-
-	   
+	   	
 	   pool.query("SELECT * FROM item", function(err, result){
 
 		if (err)
@@ -110,10 +106,6 @@ express()
 	   
 	   var query = "INSERT INTO item (name, description, quantity) VALUES ('" + name + "', '" + description + "', " + quantity + ")";
 	   
-	   	pool = new Pool({
-			connectionString: url
-		});
-
 	   
 	   pool.query(query, function(err, res){
 			if (err)
@@ -153,10 +145,6 @@ express()
 		
 		var itemQuery = "SELECT id FROM item WHERE name = '" + item + "'";
 		
-		pool = new Pool({
-			connectionString: url
-		});
-
 		pool.query(itemQuery, function(err, result){
 			if (err){
 				console.log("failed to find item");
@@ -195,11 +183,6 @@ express()
    })
    .get('/calendar', (req, res) =>{
 	   
-	   	pool = new Pool({
-			connectionString: url
-		});
-
-	   
 		pool.query("SELECT day, name, lastname, firstname, reservation.quantity, itemid, email, phone FROM reservation JOIN item ON reservation.itemid = item.id", function(err, result){
 			
 			if (err)
@@ -216,10 +199,6 @@ express()
    })
    .get('/items', (req, res) =>{
 	   
-		pool = new Pool({
-			connectionString: url
-		});
-
 		pool.query("SELECT * FROM item", function(err, result){
 
 			if (err)
