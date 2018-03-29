@@ -160,9 +160,10 @@ express()
 				var reservationQuery = "INSERT INTO reservation (itemid, quantity, firstname, lastname, email, phone, day) VALUES (" + itemId + ", " + quantity + ", '" + first + "', '" + last + "', '" + email + "', " + phone + ", '" + day + "')";
 				
 				pool.query(reservationQuery, function (err, res){
-					if (err)
+					if (err){
 						console.log("error inserting into reservation" + err);
 						res.send('failed to create reservation');
+					}
 					else{
 						console.log("SUCCESS!!!!!!!!!!!");
 						req.redirect('/admin');
