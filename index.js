@@ -121,7 +121,7 @@ express()
 					if (err)
 						result.send("error in item retrieval");
 					else
-						result.send("<a href='/admin' >Back</a>
+						result.send("<a href='/admin' >Back</a>");
 //						result.render('admin', {results: result.rows});
 				});
 			}
