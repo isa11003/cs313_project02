@@ -103,22 +103,18 @@ express()
    })
 	.post('/auth', (req, res) =>{
 		pool.query("SELECT name, password FROM admin", (err, response) => {
-			if (req.body.username == response.rows[0].name && req.body.password == response.rows[0].password){
-				var result = {
-					success: true
-				};
-				req.session.admin = req.body.username;
-			}
-			else{
+			//if (req.body.username == response.rows[0].name && req.body.password == response.rows[0].password){
+				
+			//	req.session.admin = req.body.username;
+			//}
+			//else{
 				bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
 				var params = [req.body.username, hash];
 				pool.query("INSERT INTO admin (name, password) VALUES ($1,$2)", params, (err) => {});
-					var result = {
-						success: false
-					};
+					
 				})
-			}
-		})
+			//}
+		});
 	   next();
    })
    .get('/admin', (req, res) =>{
