@@ -108,6 +108,7 @@ express()
 		pool.query("SELECT username, password FROM admin", (err, response) => {
 			if (err){
 				console.log("error looking for admin");
+				res.send("error error, danger will Robinson DANGER!!!!!!!!")
 			}
 			else{
 				if (req.body.username == response.rows[0].name && req.body.password == response.rows[0].password){
