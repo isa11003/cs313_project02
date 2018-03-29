@@ -116,17 +116,9 @@ express()
 			else
 			{
 				console.log("didn't fail");
-				/*pool.query("SELECT * FROM item", function(err, result){
-
-					if (err)
-						result.send("error in item retrieval");
-					else
-						result.send("<a href='/admin' >Back</a>");
-//						result.render('admin', {results: result.rows});
-				});*/
 			}
 	   });
-	   res.render('home');
+	   res.render('/admin');
 	   
 	//   pool.end();
    })
@@ -162,17 +154,11 @@ express()
 					else{
 						console.log("SUCCESS!!!!!!!!!!!");
 						
-						pool.query("SELECT * FROM item", function(err, results){
-
-							if (err)
-								res.send("error in item retrieval");
-							else
-								res.render('admin', {results: results.rows});
-						});
 					}
 				});
 			}					
 		});
+		res.render('/admin')
 //		pool.end();
 			
    })
