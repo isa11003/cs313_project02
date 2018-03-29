@@ -99,9 +99,13 @@ express()
 	   res.render('home');
    })
    .get('/login', (req, res) =>{
+	   if (req.session.admin != "undefined")
+		   return res.redirect('/admin');
+	   else
 	   res.render('login');
    })
-	.post('/auth', (req, res) =>{
+   .get('/admin', (req, res) =>{
+
 		pool.query("SELECT name, password FROM admin", (err, response) => {
 			if (req.body.username == response.rows[0].name && req.body.password == response.rows[0].password){
 				
@@ -115,10 +119,7 @@ express()
 				})
 			}
 		});
-		res.send("authenticated");
-   })
-   .get('/admin', (req, res) =>{
-	   	
+	 
 	   pool.query("SELECT * FROM item", function(err, result){
 
 		if (err)
