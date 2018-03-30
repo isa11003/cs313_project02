@@ -11,7 +11,7 @@
 	
 	<ul>
     <% results.forEach(function(r) { %>
-        <li>ID: <%=r.id %> =<%= r.firstname %> <%= r.lastname %> : <%= r.day %> - <%= r.quantity %> <%= r.name %>:     contact info: email: <%=r.email %> phone: <%=r.phone %></li>
+        <li>ID: <%=r.id %>      =<%= r.firstname %> <%= r.lastname %> : <%= r.day %> - <%= r.quantity %> <%= r.name %>:     contact info: email: <%=r.email %> phone: <%=r.phone %></li>
     <% }); %>
 	</ul>
 	
@@ -39,7 +39,14 @@
 			<input type="text" placeholder="date 'ex: 1990-03-23'" name="date"><br />
 			<input type="submit">
 		</form>
+		<br />
 		<a href="/logout"><button>Log Out</button></a>
+		<h1 style="color: red;"> DELETE RESERVATION </h1>
+		<br />
+		<form>
+			<input type="number" placeholder="Reservation ID" name="resId">
+			<input type="submit" value= "DELETE">
+		</form>
 	<% include partials/footer %>
 	
 </body>
