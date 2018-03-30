@@ -226,7 +226,8 @@ express()
    })
    .post('/delete', (req, res) =>{
 	   
-	   var deleteQuery = "DELETE FROM reservation WHERE id = " + query.body.resId;
+	   console.log("trying to delete");
+	   var deleteQuery = "DELETE FROM reservation WHERE id = " + req.body.resId;
 	   
 	   pool.query(deleteQuery, function(err, result){
 		   if (err)
