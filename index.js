@@ -133,13 +133,7 @@ express()
 					});
 					
 				}
-				else{
-					bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
-						var params = [req.body.username, hash];
-						pool.query("INSERT INTO admin (name, password) VALUES ($1,$2)", params, (err) => {});
-			
-					})
-					
+				else{					
 					return res.redirect('/home');
 				}
 			}
@@ -154,12 +148,12 @@ express()
 	   
 		if (req.session.admin != undefined){
  
-			pool.query("SELECT * FROM item", function(err, result){
+			pool.query("SELECT day, name, lastname, firstname, reservation.quantity, itemid, email, phone FROM reservation JOIN item ON reservation.itemid = item.id", function(err, result){
 
 				if (err)
 					res.send("error in item retrieval");
 				else
-			res.render('admin', {results: result.rows});
+					res.render('admin', {results: result.rows});
 			});
 		}
 		else{
@@ -237,16 +231,7 @@ express()
 	   res.render('contactUs');
    })
    .get('/calendar', (req, res) =>{
-	   
-		pool.query("SELECT day, name, lastname, firstname, reservation.quantity, itemid, email, phone FROM reservation JOIN item ON reservation.itemid = item.id", function(err, result){
-			
-			if (err)
-				res.send("error in calendar");
-			else
-			{
-				res.render('calendar', {results: result.rows});
-			}
-		});
+		res.render('calendar', {results: result.rows});
 //		pool.end();
    })
    .get('/contract', (req, res) =>{

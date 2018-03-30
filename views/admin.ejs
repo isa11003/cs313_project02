@@ -7,6 +7,14 @@
 <body style="text-align: center;">
 
 	<% include partials/header.ejs %>
+	
+	
+	<ul>
+    <% results.forEach(function(r) { %>
+        <li><%= r.firstname %> <%= r.lastname %> : <%= r.day %> - <%= r.quantity %> <%= r.name %></li>
+    <% }); %>
+	</ul>
+	
 		<form action="createItem" method="post">
 			<h2>Create a new item</h2><br />
 			<input type="text" placeholder="name" name="name"><br />
