@@ -122,8 +122,8 @@ express()
 				console.log(response.rows[0].password);
 				
 				if (userName == response.rows[0].name){
-					bcrypt.compare(password, response.rows[0].password, function(err, res) {
-						if (res == true)
+					bcrypt.compare(password, response.rows[0].password, function(err, result) {
+						if (result == true)
 						{
 							req.session.admin = req.body.username;
 							return res.redirect('/admin');
