@@ -152,8 +152,14 @@ express()
 
 				if (err)
 					res.send("error in item retrieval");
-				else
-					res.render('admin', {results: result.rows});
+				else{
+					pool.query("SELECT name FROM item" function (err, names){
+						if (err)
+							res.send("ERROR in item retrieval")
+						else
+							res.render('admin', {item: names.rows.name, id: result.rows.id, day: result.rows.id, name: result.rows.name, lastname: result.rows.lastname, firstname: result.rows.firstname, quantity: result.rows.quantity, email: result.rows.email, phone: result.rows.phone});
+					});
+				}
 			});
 		}
 		else{
