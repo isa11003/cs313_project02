@@ -224,6 +224,17 @@ express()
 //		pool.end();
 			
    })
+   .post('/delete', (req, res) =>{
+	   
+	   var deleteQuery = "DELETE FROM reservation WHERE id = " + query.body.resId;
+	   
+	   pool.query(deleteQuery, function(err, result){
+		   if (err)
+			   res.send("failed to delete reservation");
+		   else
+			   return res.redirect('/admin');
+	   });
+   })
    .get('/about-us', (req, res) =>{
 	   res.render('aboutUs');
    })
