@@ -145,7 +145,7 @@ express()
 			}
 		})
    })
-	.get('/logout', (req, res =>{
+	.get('/logout', (req, res) =>{
 		if (typeof req.session.user != "undefined"){
 			req.session.destroy();
 		}
