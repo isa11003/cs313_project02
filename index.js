@@ -148,7 +148,7 @@ express()
 	   
 		if (req.session.admin != undefined){
  
-			pool.query("SELECT day, name, lastname, firstname, reservation.quantity, itemid, email, phone FROM reservation JOIN item ON reservation.itemid = item.id", function(err, result){
+			pool.query("SELECT day, name, lastname, firstname, reservation.quantity, itemid, email, phone FROM reservation JOIN item ON reservation.itemid = item.id order by day DESC", function(err, result){
 
 				if (err)
 					res.send("error in item retrieval");
