@@ -231,7 +231,7 @@ express()
 	   res.render('contactUs');
    })
    .get('/calendar', (req, res) =>{
-		res.render('calendar', {results: result.rows});
+		res.render('calendar');
 //		pool.end();
    })
    .get('/contract', (req, res) =>{
