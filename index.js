@@ -153,7 +153,7 @@ express()
 				if (err)
 					res.send("error in item retrieval");
 				else{
-					pool.query("SELECT name FROM item" function (err, names){
+					pool.query("SELECT name FROM item", function (err, names){
 						if (err)
 							res.send("ERROR in item retrieval")
 						else
