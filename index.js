@@ -121,9 +121,17 @@ express()
 				console.log(response.rows[0].name);
 				console.log(response.rows[0].password);
 				
-				if (userName == response.rows[0].name && password == response.rows[0].password){
-					req.session.admin = req.body.username;
-					return res.redirect('/admin');
+				if (userName == response.rows[0].name){
+					bcrypt.compare(password, response.rows[0].password, function(err, res) {
+						if (res == true)
+						{
+							req.session.admin = req.body.username;
+							return res.redirect('/admin');
+						}
+						else
+							return res.redirect('/login');
+					});
+					
 				}
 				else{
 					bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
