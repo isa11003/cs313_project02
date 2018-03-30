@@ -145,6 +145,11 @@ express()
 			}
 		})
    })
+	.get('/logout', (req, res =>{
+		if (typeof req.session.user != "undefined"){
+			req.session.destroy();
+		return res.redirect('/home');
+   })
    .get('/admin', (req, res) =>{
 	   
 		if (req.session.admin != undefined){
