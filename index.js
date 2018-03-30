@@ -153,7 +153,7 @@ express()
 						if (err)
 							res.send("ERROR in item retrieval")
 						else
-							res.render('admin', {results: result.rows});
+							res.render('admin', {results: names.rows});
 					});
 		}
 		else{
