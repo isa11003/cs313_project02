@@ -11,7 +11,7 @@
 	
 	<ul>
     <% results.forEach(function(r) { %>
-        <li><%= r.firstname %> <%= r.lastname %> : <%= r.day %> - <%= r.quantity %> <%= r.name %></li>
+        <li>ID: <%=r.id %> =<%= r.firstname %> <%= r.lastname %> : <%= r.day %> - <%= r.quantity %> <%= r.name %>:     contact info: email: <%=r.email %> phone: <%=r.phone %></li>
     <% }); %>
 	</ul>
 	
