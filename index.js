@@ -146,10 +146,8 @@ express()
 		})
    })
 	.get('/logout', (req, res) =>{
-		if (typeof req.session.user != "undefined"){
-			req.session.admin = undefined;
-			req.session.destroy();
-		}
+		req.session.admin = undefined;
+		req.session.destroy();
 		return res.redirect('/home');
    })
    .get('/admin', (req, res) =>{
