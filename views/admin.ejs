@@ -14,7 +14,7 @@
 		<br />
 	
 	<ul>
-    <% results.forEach(function(r) { %>
+    <% id.forEach(function(r) { %>
         <li>ID: <%=r.id %> &nbsp;&nbsp;&nbsp;&nbsp; =<%= r.firstname %> <%= r.lastname %> : <%= r.day %> - <%= r.quantity %> <%= r.name %>:     contact info: email: <%=r.email %> phone: <%=r.phone %></li>
     <% }); %>
 	</ul>
@@ -35,7 +35,7 @@
 			<input type="text" placeholder="person's email" name="email"><br />
 			<input type="text" placeholder="person's phone number" name="phone"><br />
 			<select name = "item" >
-				<% results.forEach(function(r) { %>
+				<% item.forEach(function(r) { %>
 					<option value="<%= r.item %>"><%= r.item %></option>
 				<% }); %>
 			</select> <br/>
