@@ -161,7 +161,7 @@ express()
 		}
 	//	pool.end();
    })
-   .get('/adminCalendar', (req, res =>{
+   .get('/adminCalendar', (req, res) =>{
 		if (req.session.admin != undefined){
 			pool.query("SELECT reservation.id, day, name, lastname, firstname, reservation.quantity, itemid, email, phone FROM reservation JOIN item ON reservation.itemid = item.id order by day ASC", function(err, result){
 
