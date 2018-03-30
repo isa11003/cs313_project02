@@ -30,7 +30,7 @@
 			<input type="text" placeholder="person's email" name="email"><br />
 			<input type="text" placeholder="person's phone number" name="phone"><br />
 			<select name = "item" >
-				<% item.forEach(function(r) { %>
+				<% results.forEach(function(r) { %>
 					<option value="<%= r.item %>"><%= r.item %></option>
 				<% }); %>
 			</select> <br/>
