@@ -148,24 +148,27 @@ express()
 	   
 		if (req.session.admin != undefined){
  
-			pool.query("SELECT reservation.id, day, name, lastname, firstname, reservation.quantity, itemid, email, phone FROM reservation JOIN item ON reservation.itemid = item.id order by day ASC", function(err, result){
-
-				if (err)
-					res.send("error in item retrieval");
-				else{
+			
 					pool.query("SELECT name FROM item", function (err, names){
 						if (err)
 							res.send("ERROR in item retrieval")
 						else
-							res.render('admin', {item: names.rows.name, id: result.rows.id, day: result.rows.id, name: result.rows.name, lastname: result.rows.lastname, firstname: result.rows.firstname, quantity: result.rows.quantity, email: result.rows.email, phone: result.rows.phone});
+							res.render('admin', {results: result.rows});
 					});
-				}
-			});
 		}
 		else{
 			return res.redirect('/login');
 		}
 	//	pool.end();
+   })
+   .get('/adminCalendar', (req, res =>{
+	   pool.query("SELECT reservation.id, day, name, lastname, firstname, reservation.quantity, itemid, email, phone FROM reservation JOIN item ON reservation.itemid = item.id order by day ASC", function(err, result){
+
+				if (err)
+					res.send("error in item retrieval");
+				else{
+					res.render('adminCalendar', {results: result.rows});
+				}
    })
    .post('/createItem', (req, res) =>{
 	   var name = req.body.name;
