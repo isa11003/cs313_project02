@@ -266,7 +266,7 @@ express()
 				result.send("failed to load Calendar");
 		   else
 				result.render('calendar', {results: result.rows});
-		}
+		})
 //		pool.end();
    })
    .get('/contract', (req, res) =>{
