@@ -1,65 +1,58 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <% include partials/head.ejs %>
+	<% include partials/head.ejs %>
+	<link href='/stylesheets/fullcalendar.min.css' rel='stylesheet' />
+	<link href='/stylesheets/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+	<script src='moment.min.js'></script>
+	<script src='jquery.min.js'></script>
+	<script src='fullcalendar.min.js'></script>
+	<script>
+
+	$(document).ready(function() {
+
+		$('#calendar').fullCalendar({
+			defaultDate: '2018-03-12',
+			editable: true,
+			eventLimit: true, // allow "more" link when too many events
+			events: [
+			
+			<% results.forEach(function(r) { %>
+				{
+					title: 'reservation for '<%= r.qauntity %> <%= r.name %>,
+					start: day
+				},
+			<% }); %>
+			
+			]
+		});
+
+	});
+
+</script>
+<style>
+
+  body {
+    padding: 0;
+    font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+    font-size: 14px;
+  }
+
+  #calendar {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+</style>
+
 </head>
 
 <body>
 
 	<% include partials/header.ejs %>
-	<div>
-		<p> This will be a better calendar </p>
-	</div>
-
-
-	<table>
-		<tr>
-			<td> q</td>
-			<td> a</td>
-			<td> a</td>
-			<td> a</td>
-			<td> a</td>
-			<td> a</td>
-			<td> a</td>
-		</tr>
-		<tr>
-			<td> b</td>
-			<td> b</td>
-			<td> c</td>
-			<td> d</td>
-			<td> e</td>
-			<td> g</td>
-			<td> s</td>
-		</tr>
-		<tr>
-			<td> a</td>
-			<td> s</td>
-			<td> d</td>
-			<td> f</td>
-			<td> g</td>
-			<td> h</td>
-			<td> j</td>
-		</tr>
-		<tr>
-			<td> i</td>
-			<td> i</td>
-			<td> i</td>
-			<td> j</td>
-			<td> h</td>
-			<td> g</td>
-			<td> f</td>
-		</tr>
-		<tr>
-			<td> w</td>
-			<td> e</td>
-			<td> q</td>
-			<td> r</td>
-			<td> t</td>
-			<td> y</td>
-			<td> u</td>
-		</tr>
-	</table>
 	
+	<div id='calendar'></div>
+  
 	<% include partials/footer %>
 	
 </body>

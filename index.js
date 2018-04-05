@@ -258,7 +258,14 @@ express()
 	   res.render('contactUs');
    })
    .get('/calendar', (req, res) =>{
-		res.render('calendar');
+		
+		var query = "SELECT name, itemid, day, reservation.quantity FROM reservation JOIN item ON item.id = itemid";
+		
+		pool.query(query, function(err, result){
+		   if (err)
+				result.send("failed to load Calendar");
+		   else
+				result.render('calendar' {results: result.rows});
 //		pool.end();
    })
    .get('/contract', (req, res) =>{
