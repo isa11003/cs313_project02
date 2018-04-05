@@ -263,9 +263,9 @@ express()
 		
 		pool.query(query, function(err, result){
 		   if (err)
-				result.send("failed to load Calendar");
+				res.send("failed to load Calendar");
 		   else
-				result.render('calendar', {results: result.rows});
+				res.render('calendar', {results: result.rows});
 		})
 //		pool.end();
    })
