@@ -19,7 +19,7 @@
 			
 			<% results.forEach(function(r) { %>
 				{
-					title: 'reservation for:\n <%= r.qauntity %> \n<%= r.name %>',
+					title: 'reservation for:\n <%= r.reservation.qauntity %> \n<%= r.name %>',
 					start: '<%=r.day %>'
 				},
 			<% }); %>
