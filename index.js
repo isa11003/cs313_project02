@@ -259,7 +259,7 @@ express()
    })
    .get('/calendar', (req, res) =>{
 		
-		var query = "SELECT name, itemid, day, reservation.quantity FROM reservation JOIN item ON item.id = itemid";
+		var query = "SELECT name, itemid, DATE_FORMAT(day, '%Y/%m/%d'), reservation.quantity FROM reservation JOIN item ON item.id = itemid";
 		
 		pool.query(query, function(err, result){
 		   if (err)
