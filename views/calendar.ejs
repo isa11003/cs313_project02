@@ -12,17 +12,14 @@
 	$(document).ready(function() {
 
 		$('#calendar').fullCalendar({
-			defaultDate: '2018-03-12',
+//			defaultDate: '2018-03-12',
 			editable: true,
 			eventLimit: true, // allow "more" link when too many events
 			events: [
-			{
-          title: 'All Day Event',
-          start: '2018-03-01'
-        },
+			
 			<% results.forEach(function(r) { %>
 				{
-					title: '<%= r.name %> reserved',
+					title: '<%= r.name %>''s reserved',
 					start: '<%=r.day.toDateString() %>'
 				},
 			<% }); %>
