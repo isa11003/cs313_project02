@@ -163,7 +163,7 @@ express()
    })
    .get('/adminCalendar', (req, res) =>{
 		if (req.session.admin != undefined){
-			pool.query("SELECT reservation.id, DATE_FORMAT(day, '%m/%d/%Y'), name, lastname, firstname, reservation.quantity, itemid, email, phone FROM reservation JOIN item ON reservation.itemid = item.id order by day ASC", function(err, result){
+			pool.query("SELECT reservation.id, day, name, lastname, firstname, reservation.quantity, itemid, email, phone FROM reservation JOIN item ON reservation.itemid = item.id order by day ASC", function(err, result){
 
 				if (err)
 					res.send("error in item retrieval");
@@ -259,7 +259,7 @@ express()
    })
    .get('/calendar', (req, res) =>{
 		
-		var query = "SELECT name, itemid, DATE_FORMAT(day, '%Y/%m/%d'), reservation.quantity FROM reservation JOIN item ON item.id = itemid";
+		var query = "SELECT name, itemid, day, reservation.quantity FROM reservation JOIN item ON item.id = itemid";
 		
 		pool.query(query, function(err, result){
 		   if (err)
