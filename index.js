@@ -96,7 +96,7 @@ express()
 			console.log('Email sent: ' + info.response);
 			}
 		});
-	   res.render('home');
+	   res.render('thanks');
    })
    .get('/login', (req, res) =>{
 	   if (req.session.admin != undefined)
