@@ -97,7 +97,6 @@ function validateReservation(){
 	var last = document.getElementById('lastName').value;
 	var email = document.getElementById('email').value;
 	var phone = document.getElementById('phone').value;
-	var item = document.getElementById('item').value;
 	var amount = document.getElementById('amount').value;
 	var date = document.getElementById('date').value;
 	
@@ -105,7 +104,6 @@ function validateReservation(){
 	var hasLast = false;
 	var hasEmail = false;
 	var hasPhone = false;
-	var hasItem = false;
 	var hasAmount = false;
 	var hasDate = false;
 	
@@ -142,14 +140,6 @@ function validateReservation(){
 		hasPhone = true;
 	}
 	
-	if (item == ''){
-		alert("name required");
-		return false;
-	}
-	else{
-		hasItem = true;
-	}
-	
 	if (amount == ''){
 		alert("amount required");
 		return false;
@@ -167,7 +157,7 @@ function validateReservation(){
 	}
 	
 	
-	if (hasFirst && hasLast && hasEmail && hasPhone && hasItem && hasAmount && hasDate)
+	if (hasFirst && hasLast && hasEmail && hasPhone && hasAmount && hasDate)
 		return true;
 	else
 		return false;
