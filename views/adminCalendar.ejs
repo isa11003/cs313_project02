@@ -23,8 +23,8 @@
 		
 	<h1 style="color: red;"> DELETE RESERVATION </h1>
 	<br />
-	<form action="delete" method="post">
-		<input type="number" placeholder="Reservation ID" name="resId">
+	<form action="delete" method="post" onsubmit="return validateDelete()">
+		<input id="id" type="number" placeholder="Reservation ID" name="resId">
 		<input type="submit" value= "DELETE">
 	</form>
 	<br />

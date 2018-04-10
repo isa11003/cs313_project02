@@ -14,28 +14,28 @@
 		<a href="/logout"><button>Log Out</button></a>
 		<br />
 	
-		<form action="createItem" method="post">
+		<form action="createItem" method="post" onsubmit="return validateCreateItem()">
 			<h2>Create a new item</h2><br />
-			<input type="text" placeholder="name" name="name"><br />
-			<input type="text" placeholder="description" name="description"><br />
-			<input type="text" placeholder="quantity" name="quantity"><br />
+			<input type="text" id="item" placeholder="name" name="name"><br />
+			<input type="text" id="description" placeholder="description" name="description"><br />
+			<input type="text" id="quantity" placeholder="quantity" name="quantity"><br />
 			<input type="submit">
 		</form>
 		<br />
-		<form action="createReservation" method="post">
+		<form action="createReservation" method="post" onsubmit="return validateReservation()">
 			<h2>Create a new reservation</h2>
 			<br />
-			<input type="text" placeholder="Person's first name" name="first"> <br />
-			<input type="text" placeholder="person's last name" name="last"><br />
-			<input type="text" placeholder="person's email" name="email"><br />
-			<input type="text" placeholder="person's phone number" name="phone"><br />
-			<select name = "item" >
+			<input id="firstName" type="text" placeholder="Person's first name" name="first"> <br />
+			<input id="lastName" type="text" placeholder="person's last name" name="last"><br />
+			<input id="email" type="text" placeholder="person's email" name="email"><br />
+			<input id="phone" type="text" placeholder="person's phone number" name="phone"><br />
+			<select id="item"  name = "item" >
 				<% results.forEach(function(r) { %>
 					<option value="<%= r.name %>"><%= r.name %></option>
 				<% }); %>
 			</select> <br/>
-			<input type="text" placeholder="amount" name="amount"><br />
-			<input type="text" placeholder="date 'ex: 1990-03-23'" name="date"><br />
+			<input id="amount"  type="text" placeholder="amount" name="amount"><br />
+			<input id="date" type="text" placeholder="date 'ex: 1990-03-23'" name="date"><br />
 			<input type="submit">
 		</form>
 	<% include partials/footer %>

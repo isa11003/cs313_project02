@@ -7,10 +7,10 @@
 <body>
 
 	<% include partials/header.ejs %>
-	<form action="email" method="post" target="_SELF" style="text-align: center;">
-		<input placeholder="name" name="name" type="text"> <br />
-		<input placeholder="email" name="email" type="text"> <br />
-		<textarea placeholder="message" name="message" cols="50" rows="4"></textarea> <br />
+	<form action="email" method="post" target="_SELF" style="text-align: center;" onsubmit="return validateContact()">
+		<input placeholder="name" id="name" name="name" type="text"> <br />
+		<input placeholder="email" id="email" name="email" type="text"> <br />
+		<textarea placeholder="message" id="message" name="message" cols="50" rows="4"></textarea> <br />
 		<input type="submit">
 	</form>
 
