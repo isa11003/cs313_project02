@@ -85,6 +85,7 @@ express()
 		var mailOptions = {
 			from: req.body.email,
 			to: 'taylorhisaacson@gmail.com',
+			//to: isaacsonrentals@gmail.com,
 			subject: 'FROM: ' + req.body.name,
 			text: 'FROM: ' + req.body.name + '\n\n' + req.body.message + '\n\n reply to:  ' + req.body.email
 		};
